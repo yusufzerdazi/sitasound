@@ -3,9 +3,10 @@
 @tailwind utilities;
 
 :root {
-  
-  background-color: #242424;
+  background-color: black;
   color: #dae7e0;
+  --neon-pink: #ff71ce;
+  --neon-purple: #b026ff;
 }
 
 @font-face {
@@ -14,7 +15,7 @@
 }
 
 h1, h2, span {
-  font-family: "Plinc";
+  font-family: "Neonderthaw", cursive;
 }
 
 p {
@@ -29,4 +30,54 @@ p {
 
 .link:hover {
   opacity: 0.7;
+}
+
+.neon-text {
+  text-shadow: 0 0 10px var(--neon-pink),
+               0 0 20px var(--neon-pink),
+               0 0 30px var(--neon-pink);
+  color: var(--neon-pink);
+}
+
+.neon-border {
+  border: 2px solid var(--neon-green);
+  box-shadow: 0 0 10px var(--neon-green),
+              inset 0 0 10px var(--neon-green);
+}
+
+.neon-section {
+  background: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(10px);
+  border: 1px solid var(--neon-blue);
+  box-shadow: 0 0 20px rgba(1, 205, 254, 0.2);
+}
+
+.coming-soon {
+  font-size: 5rem;
+  font-weight: normal;
+  text-align: center;
+  color: var(--neon-pink);
+  text-shadow: 
+    0 0 5px var(--neon-pink),
+    0 0 10px var(--neon-pink),
+    0 0 20px var(--neon-pink),
+    0 0 40px var(--neon-purple);
+  animation: flicker 1.5s infinite alternate;
+}
+
+@keyframes flicker {
+  0%, 18%, 22%, 25%, 53%, 57%, 100% {
+    text-shadow: 
+      0 0 5px var(--neon-pink),
+      0 0 10px var(--neon-pink),
+      0 0 20px var(--neon-pink),
+      0 0 40px var(--neon-purple);
+  }
+  20%, 24%, 55% {
+    text-shadow: 
+      0 0 2px var(--neon-pink),
+      0 0 4px var(--neon-pink),
+      0 0 6px var(--neon-pink),
+      0 0 10px var(--neon-purple);
+  }
 }

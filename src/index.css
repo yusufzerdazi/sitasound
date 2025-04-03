@@ -1,0 +1,32 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  
+  background-color: #242424;
+  color: #dae7e0;
+}
+
+@font-face {
+  font-family: 'Plinc';
+  src: url('/plinc.ttf');
+}
+
+h1, h2, span {
+  font-family: "Plinc";
+}
+
+p {
+  font-family: "Roboto Mono", serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.link {
+  text-decoration: underline;
+}
+
+.link:hover {
+  opacity: 0.7;
+}

@@ -13,7 +13,6 @@ resource blobStorage 'Microsoft.Storage/storageAccounts@2023-01-01' = {
     allowBlobPublicAccess: true
     allowSharedKeyAccess: true
     networkAcls: {
-      ipv6Rules: []
       bypass: 'AzureServices'
       virtualNetworkRules: []
       ipRules: []

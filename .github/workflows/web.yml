@@ -1,6 +1,8 @@
 name: web
 
 on:
+  schedule:
+    - cron: "15 * * * *"
   push:
     paths:
     - src/**

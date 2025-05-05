@@ -1,5 +1,3 @@
-import { useState } from 'react'
-
 function App() {
   const events2024 = [
     { date: '8 June', event: 'Parklife Festival (VIP Stage)', location: 'Manchester', bold: true },

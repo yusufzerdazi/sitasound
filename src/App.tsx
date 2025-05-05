@@ -48,31 +48,19 @@ function App() {
         </div>
 
         {/* Contact Section */}
-        <div className="space-y-4 mb-12">
-          <p className="text-lg">
-            <span className="font-semibold">Contact:</span>{' '}
-            <a href="mailto:kassitasound@gmail.com" className="text-[#008575] hover:underline">
-              <i className="fas fa-envelope mr-2"></i>kassitasound@gmail.com
-            </a>
-          </p>
-          <p className="text-lg">
-            <span className="font-semibold">IG:</span>{' '}
-            <a href="https://www.instagram.com/sita_sound/" className="text-[#008575] hover:underline">
-              <i className="fab fa-instagram mr-2"></i>@sita_sound
-            </a>
-          </p>
-          <p className="text-lg">
-            <span className="font-semibold">SC:</span>{' '}
-            <a href="https://soundcloud.com/sita_sound" className="text-[#008575] hover:underline">
-              <i className="fab fa-soundcloud mr-2"></i>Kassita
-            </a>
-          </p>
-          <p className="text-lg">
-            <span className="font-semibold">RA:</span>{' '}
-            <a href="https://ra.co/dj/kassita" className="text-[#008575] hover:underline">
-              <i className="fas fa-music mr-2"></i>Kassita · Artist Profile
-            </a>
-          </p>
+        <div className="flex flex-wrap gap-x-8 gap-y-2 mb-12 justify-center">
+          <a href="mailto:kassitasound@gmail.com" className="text-[#008575] hover:underline inline-flex items-center">
+            <i className="fas fa-envelope mr-2"></i>kassitasound@gmail.com
+          </a>
+          <a href="https://www.instagram.com/sita_sound/" className="text-[#008575] hover:underline inline-flex items-center">
+            <i className="fab fa-instagram mr-2"></i>sita_sound
+          </a>
+          <a href="https://soundcloud.com/sita_sound" className="text-[#008575] hover:underline inline-flex items-center">
+            <i className="fab fa-soundcloud mr-2"></i>Kassita
+          </a>
+          <a href="https://ra.co/dj/kassita" className="text-[#008575] hover:underline inline-flex items-center">
+            <i className="fas fa-music mr-2"></i>Kassita · Artist Profile (RA)
+          </a>
         </div>
 
         {/* Bio Section */}
@@ -95,12 +83,10 @@ function App() {
             <h3 className="text-xl font-semibold text-[#008575] mb-4 font-['Montserrat']">2024 highlights...</h3>
             <div className="ml-5 space-y-4">
               {events2024.map((event, index) => (
-                <div key={index} className="flex items-start">
+                <div key={index} className="">
                   <span className="font-semibold mr-2">{event.date}:</span>
-                  <div>
-                    <span className={event.bold ? "font-bold" : ""}>{event.event}</span>
-                    <span className="text-[#008575]"> in {event.location}</span>
-                  </div>
+                  <span className={event.bold ? "font-bold" : ""}>{event.event}</span>
+                  <span className="text-[#008575]"> in {event.location}</span>
                 </div>
               ))}
             </div>
@@ -112,12 +98,10 @@ function App() {
             <h3 className="text-xl font-semibold text-[#008575] mb-4 font-['Montserrat']">2025 so far...</h3>
             <div className="ml-5 space-y-4">
               {events2025.map((event, index) => (
-                <div key={index} className="flex items-start">
+                <div key={index} className="">
                   <span className="font-semibold mr-2">{event.date}:</span>
-                  <div>
                     <span className={event.bold ? "font-bold" : ""}>{event.event}</span>
                     <span className="text-[#008575]"> in {event.location}</span>
-                  </div>
                 </div>
               ))}
             </div>

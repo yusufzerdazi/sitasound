@@ -9,28 +9,6 @@
   --neon-purple: #b026ff;
 }
 
-body {
-  overflow: hidden;
-  height: 100vh;
-  margin: 0;
-  padding: 0;
-}
-
-@font-face {
-  font-family: 'Plinc';
-  src: url('/plinc.ttf');
-}
-
-h1, h2, span {
-  font-family: "Neonderthaw", cursive;
-}
-
-p {
-  font-family: "Roboto Mono", serif;
-  font-weight: 400;
-  font-style: normal;
-}
-
 .link {
   text-decoration: underline;
 }
@@ -39,52 +17,6 @@ p {
   opacity: 0.7;
 }
 
-.neon-text {
-  text-shadow: 0 0 10px var(--neon-pink),
-               0 0 20px var(--neon-pink),
-               0 0 30px var(--neon-pink);
-  color: var(--neon-pink);
-}
-
-.neon-border {
-  border: 2px solid var(--neon-green);
-  box-shadow: 0 0 10px var(--neon-green),
-              inset 0 0 10px var(--neon-green);
-}
-
-.neon-section {
-  background: rgba(0, 0, 0, 0.8);
-  backdrop-filter: blur(10px);
-  border: 1px solid var(--neon-blue);
-  box-shadow: 0 0 20px rgba(1, 205, 254, 0.2);
-}
-
-.coming-soon {
-  font-size: 5rem;
-  font-weight: normal;
-  text-align: center;
-  color: var(--neon-pink);
-  text-shadow: 
-    0 0 5px var(--neon-pink),
-    0 0 10px var(--neon-pink),
-    0 0 20px var(--neon-pink),
-    0 0 40px var(--neon-purple);
-  animation: flicker 1.5s infinite alternate;
-}
-
-@keyframes flicker {
-  0%, 18%, 22%, 25%, 53%, 57%, 100% {
-    text-shadow: 
-      0 0 5px var(--neon-pink),
-      0 0 10px var(--neon-pink),
-      0 0 20px var(--neon-pink),
-      0 0 40px var(--neon-purple);
-  }
-  20%, 24%, 55% {
-    text-shadow: 
-      0 0 2px var(--neon-pink),
-      0 0 4px var(--neon-pink),
-      0 0 6px var(--neon-pink),
-      0 0 10px var(--neon-purple);
-  }
+p {
+  font-family: 'Inter', sans-serif;
 }

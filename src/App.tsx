@@ -29,7 +29,7 @@ function App() {
   ]
 
   return (
-    <div className="bg-white text-[#695d46] font-['Inter']">
+    <div className="bg-white text-primary">
       {/* Hero Image */}
       <div className="max-w-4xl mx-auto px-4">
         <img 
@@ -43,50 +43,50 @@ function App() {
       <div className="max-w-4xl mx-auto px-4 py-12">
         {/* Header Section */}
         <div className="text-center mb-12">
-          <h1 className="text-5xl font-bold mb-6 font-['Montserrat']">KASSITA</h1>
-          <div className="h-1 bg-[#695d46] w-48 mx-auto mb-8"></div>
+          <h1 className="text-5xl font-bold mb-6 text-heading">KASSITA</h1>
+          <div className="h-1 bg-primary w-48 mx-auto mb-8"></div>
         </div>
 
         {/* Contact Section */}
         <div className="flex flex-wrap gap-x-8 gap-y-2 mb-12 justify-center">
-          <a href="mailto:kassitasound@gmail.com" className="text-[#008575] hover:underline inline-flex items-center">
+          <a href="mailto:kassitasound@gmail.com" className="link-underline inline-flex items-center">
             <i className="fas fa-envelope mr-2"></i>kassitasound@gmail.com
           </a>
-          <a href="https://www.instagram.com/sita_sound/" className="text-[#008575] hover:underline inline-flex items-center">
+          <a href="https://www.instagram.com/sita_sound/" className="link-underline inline-flex items-center">
             <i className="fab fa-instagram mr-2"></i>sita_sound
           </a>
-          <a href="https://soundcloud.com/sita_sound" className="text-[#008575] hover:underline inline-flex items-center">
+          <a href="https://soundcloud.com/sita_sound" className="link-underline inline-flex items-center">
             <i className="fab fa-soundcloud mr-2"></i>Kassita
           </a>
-          <a href="https://ra.co/dj/kassita" className="text-[#008575] hover:underline inline-flex items-center">
+          <a href="https://ra.co/dj/kassita" className="link-underline inline-flex items-center">
             <i className="fas fa-music mr-2"></i>Kassita · Artist Profile (RA)
           </a>
         </div>
 
         {/* Bio Section */}
         <div className="mb-12">
-          <h2 className="text-2xl font-bold text-[#ff5e0e] mb-4 font-['Montserrat']">Bio</h2>
+          <h2 className="text-2xl font-bold text-accent mb-4 text-heading">Bio</h2>
           <p className="mb-4">
             From living in Manchester, Bristol and then London over the past 10 years, experiencing the nightlife in each city, Kassita absorbed a plethora of culture and sound that gives her mixes a unique edge that keeps you coming back for more. Her expert track selection takes you on a journey through house/tech house, techno, breaks and bass genres, seeking to explore the different perspectives of electronic music to introduce the audience to something new, while carefully tailoring her performances to the venue and crowd.
           </p>
           <p>
-            Kassita won a mix competition to <span className="font-semibold">DJ at Parklife Festival</span> and has since gone on to perform at two other UK festivals as well as perform at multiple events across the UK, including at iconic venue 'The Cause' in London. She has founded her own electronic music event called "TUSH" (@tush_space) which is an inclusive rave aimed at fostering a playful, respectful space that encourages mutual appreciation and open mindedness within the sanctuary of good music. Kassita also has a <span className="font-semibold">residency at Subtle Radio</span>, based in Hackney (London).
+            Kassita won a mix competition to <span className="font-semibold">DJ at Parklife Festival</span> and has since gone on to perform at two other UK festivals as well as perform at multiple events across the UK, including at iconic venue 'The Cause' in London. She has founded her own electronic music event called "TUSH" (@tush_space) which is an inclusive rave aimed at fostering a playful, respectful space that encourages mutual appreciation and open mindedness within the sanctuary of good music. Kassita also has <span className="font-semibold">radio residencies at <a href="https://subtleradio.com/" className="link">Subtle</a></span> (Hackney) and <a href="https://mode.london/" className="font-semibold link">Mode</a> (London).
           </p>
         </div>
 
         {/* Shows & Events Section */}
         <div className="mb-12">
-          <h2 className="text-2xl font-bold text-[#ff5e0e] mb-6 font-['Montserrat']">Shows & Events</h2>
+          <h2 className="text-2xl font-bold text-accent mb-6 text-heading">Shows & Events</h2>
           
           {/* 2024 Events */}
           <div className="mb-8">
-            <h3 className="text-xl font-semibold text-[#008575] mb-4 font-['Montserrat']">2024 highlights...</h3>
+            <h3 className="text-xl font-semibold text-secondary mb-4 text-heading">2024 highlights...</h3>
             <div className="ml-5 space-y-4">
               {events2024.map((event, index) => (
                 <div key={index} className="">
                   <span className="font-semibold mr-2">{event.date}:</span>
                   <span className={event.bold ? "font-bold" : ""}>{event.event}</span>
-                  <span className="text-[#008575]"> in {event.location}</span>
+                  <span className="text-secondary"> in {event.location}</span>
                 </div>
               ))}
             </div>
@@ -95,28 +95,27 @@ function App() {
 
           {/* 2025 Events */}
           <div>
-            <h3 className="text-xl font-semibold text-[#008575] mb-4 font-['Montserrat']">2025 so far...</h3>
+            <h3 className="text-xl font-semibold text-secondary mb-4 text-heading">2025 so far...</h3>
             <div className="ml-5 space-y-4">
               {events2025.map((event, index) => (
                 <div key={index} className="">
                   <span className="font-semibold mr-2">{event.date}:</span>
-                    <span className={event.bold ? "font-bold" : ""}>{event.event}</span>
-                    <span className="text-[#008575]"> in {event.location}</span>
+                  <span className={event.bold ? "font-bold" : ""}>{event.event}</span>
+                  <span className="text-secondary"> in {event.location}</span>
                 </div>
               ))}
             </div>
-          </div>            
-          <p className="pt-5">as well as my monthly radio show residencies at Subtle Radio and Mode Radio, London.</p>
-
+            <p className="pt-5">as well as my monthly radio show residencies at Subtle Radio and Mode Radio, London.</p>
+          </div>
         </div>
 
         {/* Promoter Feedback Section */}
         <div>
-          <h2 className="text-2xl font-bold text-[#ff5e0e] mb-6 font-['Montserrat']">Promoter Feedback</h2>
+          <h2 className="text-2xl font-bold text-accent mb-6 text-heading">Promoter Feedback</h2>
           
           <div className="space-y-8">
             <div>
-              <h3 className="text-xl font-semibold text-[#008575] mb-2 font-['Montserrat']">Four Loko</h3>
+              <h3 className="text-xl font-semibold text-secondary mb-2 text-heading">Four Loko</h3>
               <p className="italic">
                 "Kassita has been nothing short of amazing to work with over the past few months. 
                 She has been a phenomenal addition to our FourLoko DJ booth at three major festivals this summer - she kept the crowd pumping with her distinctive tune selection and her mixing skills are excellent. I couldn't recommend her more!"
@@ -125,7 +124,7 @@ function App() {
             </div>
 
             <div>
-              <h3 className="text-xl font-semibold text-[#008575] mb-2 font-['Montserrat']">Spilt Milk</h3>
+              <h3 className="text-xl font-semibold text-secondary mb-2 text-heading">Spilt Milk</h3>
               <p className="italic">
                 "Kassita takes you on a journey that knows no bounds - she effortlessly navigates genres and styles, embracing diversity and versatility."
               </p>
@@ -133,7 +132,7 @@ function App() {
             </div>
 
             <div>
-              <h3 className="text-xl font-semibold text-[#008575] mb-2 font-['Montserrat']">Looney Grooves</h3>
+              <h3 className="text-xl font-semibold text-secondary mb-2 text-heading">Looney Grooves</h3>
               <p className="italic">
                 "Kassita was part of our all-girls lineup for 'UKGirls' - she was an absolute pleasure to host at our event and an absolute sheller with the tunes! From getting stuck in with the build-up promo, to seamless mixing on the night, she's a DJ to look out for."
               </p>

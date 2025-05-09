@@ -9,14 +9,36 @@
   --neon-purple: #b026ff;
 }
 
-.link {
-  text-decoration: underline;
-}
+@layer components {
+  .text-primary {
+    @apply text-[#695d46];
+  }
 
-.link:hover {
-  opacity: 0.7;
+  .text-secondary {
+    @apply text-[#008575];
+  }
+
+  .text-accent {
+    @apply text-[#ff5e0e];
+  }
+
+  .link {
+    @apply text-secondary hover:text-accent transition-colors duration-200;
+  }
+
+  .link-underline {
+    @apply link hover:underline;
+  }
+
+  .text-body {
+    @apply text-primary font-['Inter'];
+  }
+
+  .text-heading {
+    @apply font-['Montserrat'];
+  }
 }
 
 p {
-  font-family: 'Inter', sans-serif;
+  @apply text-body;
 }

@@ -66,16 +66,6 @@ function App() {
     { filename: 'Kassita Leeds Festival 2024.jpeg.jpg', date: '24 August 2024', location: 'Leeds Festival' },
   ];
 
-  // Helper to find event info for a gallery image (by filename)
-  function getEventInfoForImage(filename: string) {
-    // Try to find an event whose event name or location is in the filename (case-insensitive)
-    const lower = filename.toLowerCase();
-    return allEvents.find(e =>
-      lower.includes(e.location.toLowerCase()) ||
-      lower.includes(e.event.toLowerCase().split('(')[0].trim().toLowerCase())
-    );
-  }
-
   // England, Scotland, and Wales are all part of GBR in most world topojsons
   const highlightedCountries = ["GBR", "ESP", "JPN"]; // United Kingdom, Spain, Japan
   const geoUrl = "world.json";

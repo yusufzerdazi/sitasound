@@ -34,4 +34,4 @@ jobs:
       with:
         azcliversion: 2.52.0
         inlineScript: |
-          az storage blob service-properties update --account-name sitasound --static-website --404-document error.html --index-document index.html
+          az storage blob service-properties update --account-name sitasound --static-website --404-document error.html --index-document index.html --auth-mode login

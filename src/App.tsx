@@ -1,5 +1,6 @@
 import React, { useRef, useState } from 'react'
 import { Carousel } from 'flowbite-react';
+import { ComposableMap, Geographies, Geography } from "react-simple-maps";
 
 function App() {
   // Combine all events into one array with a year for sorting
@@ -42,6 +43,7 @@ function App() {
   const eventsRef = useRef(null)
   const feedbackRef = useRef(null)
   const galleryRef = useRef(null)
+  const mapRef = useRef(null)
 
   const scrollToSection = (ref: React.RefObject<HTMLDivElement>) => {
     if (ref.current) {
@@ -51,14 +53,16 @@ function App() {
 
   // Gallery images with date and location fields
   const galleryImages = [
-    { filename: 'chastingtigers-0115.jpg', date: '15 March 2025', location: 'TG, Electrowerkz' },
-    { filename: 'chastingtigers-8511.jpg', date: '15 March 2025', location: 'TG, Electrowerkz' },
+    { filename: 'chastingtigers-0115.jpg', date: '15 March 2025', location: 'Electrowerkz, London' },
+    { filename: 'chastingtigers-8511.jpg', date: '15 March 2025', location: 'Electrowerkz, London' },
     { filename: 'DSC01427.jpg', date: '20 April 2025', location: 'The DBA, Manchester' },
     { filename: 'DSC01286.jpg', date: '20 April 2025', location: 'The DBA, Manchester' },
     { filename: 'DSC01346.jpg', date: '20 April 2025', location: 'The DBA, Manchester' },
     { filename: 'DSC01443.jpg', date: '20 April 2025', location: 'The DBA, Manchester' },
     { filename: 'DSC01288.jpg', date: '20 April 2025', location: 'The DBA, Manchester' },
-    { filename: 'Kassita - Zerdazi (TUSH at Night Tales) 30-05-25 - 00004.jpg', date: '30 May 2025', location: 'Night Tales' },
+    { filename: 'Keepers club 22nd LR-14.JPG', date: '22nd March 2025', location: 'Keeper, Ibiza' },
+    { filename: 'Keepers club 22nd LR-16.JPG', date: '22nd March 2025', location: 'Keeper, Ibiza' },
+    { filename: 'Kassita - Zerdazi (TUSH at Night Tales) 30-05-25 - 00004.jpg', date: '30 May 2025', location: 'Night Tales, London' },
     { filename: 'Kassita Leeds Festival 2024.jpeg.jpg', date: '24 August 2024', location: 'Leeds Festival' },
   ];
 
@@ -69,6 +73,49 @@ function App() {
     return allEvents.find(e =>
       lower.includes(e.location.toLowerCase()) ||
       lower.includes(e.event.toLowerCase().split('(')[0].trim().toLowerCase())
+    );
+  }
+
+  // England, Scotland, and Wales are all part of GBR in most world topojsons
+  const highlightedCountries = ["GBR", "ESP", "JPN"]; // United Kingdom, Spain, Japan
+  const geoUrl = "world.json";
+
+  function NeonScratchMap() {
+    return (
+      <div className="flex flex-col items-center block-scratch-map">
+        <div className="flex justify-center w-full max-w-3xl">
+          <ComposableMap
+            projectionConfig={{ scale: 140 }}
+            style={{ width: "100%", height: "auto", filter: "drop-shadow(0 0 0px #7ceffa)" }}
+          >
+            <Geographies geography={geoUrl}>
+              {({ geographies }) =>
+                geographies.map((geo) => {
+                  const isHighlighted = highlightedCountries.includes(geo.id);
+                  return (
+                    <Geography
+                      key={geo.rsmKey}
+                      geography={geo}
+                      fill={isHighlighted ? "#fa5da2" : "none"}
+                      stroke="#00fff7"
+                      strokeWidth={isHighlighted ? 1 : 0.4}
+                      style={{
+                        default: {
+                          filter: isHighlighted
+                            ? "drop-shadow(0 0 3px #00fff7)"
+                            : "drop-shadow(0 0 1.5px #00fff7)",
+                          transition: "all 0.3s",
+                          pointerEvents: "none",
+                        }
+                      }}
+                    />
+                  );
+                })
+              }
+            </Geographies>
+          </ComposableMap>
+        </div>
+      </div>
     );
   }
 
@@ -102,6 +149,7 @@ function App() {
         <button className="nav-btn nav-btn-pink text-kassita" onClick={() => scrollToSection(galleryRef)}>Gallery</button>
         <button className="nav-btn nav-btn-purple text-kassita" onClick={() => scrollToSection(eventsRef)}>Shows & Events</button>
         <button className="nav-btn nav-btn-teal text-kassita" onClick={() => scrollToSection(feedbackRef)}>Promoter Feedback</button>
+        <button className="nav-btn nav-btn-blue text-kassita" onClick={() => scrollToSection(mapRef)}>Scratch Map</button>
       </div>
 
       {/* Content */}
@@ -113,7 +161,7 @@ function App() {
             From living in Manchester, Bristol and then London over the past 10 years, experiencing the nightlife in each city, Kassita absorbed a plethora of culture and sound that gives her mixes a unique edge that keeps you coming back for more. Her expert track selection takes you on a journey through house/tech house, techno, breaks and bass genres, seeking to explore the different perspectives of electronic music to introduce the audience to something new, while carefully tailoring her performances to the venue and crowd.
           </p>
           <p>
-            Kassita won a mix competition to <span className="font-semibold">DJ at Parklife Festival</span> and has since gone on to perform at two other UK festivals as well as perform at multiple events across the UK, including at iconic venue 'The Cause' in London. She has founded her own electronic music event called "TUSH" (@tush_space) which is an inclusive rave aimed at fostering a playful, respectful space that encourages mutual appreciation and open mindedness within the sanctuary of good music. Kassita also has <span className="font-semibold">radio residencies at <a href="https://subtleradio.com/" className="link-bio link-underline">Subtle</a></span> (Hackney) and <a href="https://mode.london/" className="font-semibold link-bio link-underline">Mode</a> (London).
+            Kassita won a mix competition to <span className="font-semibold">DJ at Parklife Festival</span> and has since gone on to perform at two other UK festivals as well as perform at multiple events across the UK, including at iconic venue 'The Cause' in London. She has founded her own electronic music event called "TUSH" (@tush_space) which is an inclusive rave aimed at fostering a playful, respectful space that encourages mutual appreciation and open mindedness within the sanctuary of good music. Kassita also has <span className="font-semibold">radio residencies at <a href="https://subtleradio.com/" className="link-bio link-underline" target="_blank" rel="noopener noreferrer">Subtle</a></span> (Hackney) and <a href="https://mode.london/" className="font-semibold link-bio link-underline">Mode</a> (London).
           </p>
         </div>
 
@@ -123,21 +171,21 @@ function App() {
           <div className="h-80 sm:h-96 xl:h-[32rem] 2xl:h-[40rem] w-full max-w-3xl mx-auto">
             <Carousel slideInterval={4000} pauseOnHover>
               {galleryImages.map((img, idx) => (
-                <div key={idx} className="relative flex flex-col items-center justify-center w-full h-full">
+                <div key={idx} className="flex flex-col items-center justify-center w-full h-full">
                   <img
                     src={`/gallery/${img.filename}`}
                     alt={img.filename.replace(/\.[^.]+$/, '').replace(/[-_]/g, ' ')}
-                    className="object-contain w-full h-full bg-black rounded-lg"
+                    className="object-contain w-full max-h-[90%] bg-black rounded-lg"
                     loading="lazy"
                   />
-                  {img.date && (
-                    <div className="absolute z-10 pointer-events-none bottom-4 left-4">
-                      <span className="text-xl font-bold text-primary drop-shadow-lg text-kassita">{img.date}</span>
-                    </div>
-                  )}
-                  {img.location && (
-                    <div className="absolute z-10 pointer-events-none bottom-4 right-4">
-                      <span className="text-xl font-bold text-secondary drop-shadow-lg text-kassita">{img.location}</span>
+                  {(img.date || img.location) && (
+                    <div className="flex flex-row items-center justify-between w-full px-6 py-3 mt-2 bg-black rounded-lg bg-opacity-80">
+                      {img.date && (
+                        <span className="text-lg font-bold text-primary drop-shadow-lg text-kassita">{img.date}</span>
+                      )}
+                      {img.location && (
+                        <span className="text-lg font-bold text-secondary drop-shadow-lg text-kassita">{img.location}</span>
+                      )}
                     </div>
                   )}
                 </div>
@@ -207,6 +255,11 @@ function App() {
               <p className="font-semibold text-right">Josh M., Event Manager</p>
             </div>
           </div>
+        </div>
+
+        {/* Neon Scratch Map Section */}
+        <div ref={mapRef} id="scratch-map" className="block-scratch-map">
+          <NeonScratchMap />
         </div>
       </div>
     </div>

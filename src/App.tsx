@@ -1,59 +1,75 @@
-import React, { useRef } from 'react'
+import React, { useRef, useState } from 'react'
+import { Carousel } from 'flowbite-react';
 
 function App() {
   // Combine all events into one array with a year for sorting
   const allEvents = [
-    { date: '8 June 2024', event: 'Parklife Festival (VIP Stage)', location: 'Manchester', bold: true },
-    { date: '13 July 2024', event: 'TRNSMT Festival (FourLoko Crate)', location: 'Glasgow', bold: false },
-    { date: '24 Aug 2024', event: 'Leeds Festival (FourLoko Crate)', location: 'Leeds', bold: false },
-    { date: '16 Nov 2024', event: "Burning Man 'Decompression' (The Cause, 1k+ cap)", location: 'London', bold: true },
-    { date: '25 May 2024', event: "Spilt Milk 'Queer Feminist Art Afterparty' (VFD)", location: 'London', bold: false },
-    { date: '1 Nov 2024', event: "TUSH 'Inclusive Rave' (Jaguar Shoes)", location: 'London', bold: false },
-    { date: '25 Oct 2024', event: "Looney Grooves 'UKGirls: Hallowqueen' (XLR)", location: 'Manchester', bold: false },
-    { date: '18 Jan 2025', event: "Faded Society 'The Reset' (Club Makossa)", location: 'London', bold: false },
-    { date: '22 Jan 2025', event: 'Mode Radio Takeover', location: 'London', bold: false },
-    { date: 'Jan - March 2025', event: "Gordon Ramsay's Lucky Cat", location: 'Manchester & Mayfair', bold: false },
-    { date: '19 Feb 2025', event: 'BMC Radio Takeover', location: 'London', bold: false },
-    { date: '21 Feb 2025', event: "TUSH 'Inclusive Rave' (Cu)", location: 'London', bold: false },
-    { date: '7 March 2025', event: 'Mischief (Metropolis)', location: 'London', bold: false },
-    { date: '15 March 2025', event: 'TG March Ball (Electrowerkz - 1.5K cap)', location: 'London', bold: true },
-    { date: '8 April 2025', event: 'Lollapalooza', location: 'Osaka, Japan', bold: false },
-    { date: '10 April 2025', event: 'FT & Blueflower (Club Circus)', location: 'Tokyo, Japan', bold: true },
-    { date: '18 April 2025', event: 'Mischief (Metropolis)', location: 'London', bold: false },
-    { date: '20 April 2025', event: "Resurge 'No Drama' (the DBA)", location: 'Manchester', bold: false },
-    { date: '26 April 2025', event: 'Cyberdog', location: 'London', bold: false },
-    { date: '17-25 May 2025', event: "Ibiza.PlayAbout 'Annual Music Festival' (Ibiza Jet)", location: 'Ibiza', bold: true },
-    { date: '30 May 2025', event: "TUSH 'Inclusive Rave' (Night Tales)", location: 'London', bold: false },
-    { date: '7 June 2025', event: 'Secret Valley Festival', location: 'Wales', bold: true },
-    { date: '23 Aug & 7 Sept 2025', event: 'Cyberdog', location: 'London', bold: false }
+    { date: '8 June 2024', iso: '2024-06-08', event: 'Parklife Festival (VIP Stage)', location: 'Manchester', bold: true },
+    { date: '13 July 2024', iso: '2024-07-13', event: 'TRNSMT Festival (FourLoko Crate)', location: 'Glasgow', bold: false },
+    { date: '24 August 2024', iso: '2024-08-24', event: 'Leeds Festival (FourLoko Crate)', location: 'Leeds', bold: false },
+    { date: '16 November 2024', iso: '2024-11-16', event: "Burning Man 'Decompression' (The Cause, 1k+ cap)", location: 'London', bold: true },
+    { date: '25 May 2024', iso: '2024-05-25', event: "Spilt Milk 'Queer Feminist Art Afterparty' (VFD)", location: 'London', bold: false },
+    { date: '1 November 2024', iso: '2024-11-01', event: "TUSH 'Inclusive Rave' (Jaguar Shoes)", location: 'London', bold: false },
+    { date: '25 October 2024', iso: '2024-10-25', event: "Looney Grooves 'UKGirls: Hallowqueen' (XLR)", location: 'Manchester', bold: false },
+    { date: '18 January 2025', iso: '2025-01-18', event: "Faded Society 'The Reset' (Club Makossa)", location: 'London', bold: false },
+    { date: '22 January 2025', iso: '2025-01-22', event: 'Mode Radio Takeover', location: 'London', bold: false },
+    { date: 'January - March 2025', iso: '2025-03-28', event: "Gordon Ramsay's Lucky Cat", location: 'Manchester & Mayfair', bold: false },
+    { date: '19 February 2025', iso: '2025-02-19', event: 'BMC Radio Takeover', location: 'London', bold: false },
+    { date: '21 February 2025', iso: '2025-02-21', event: "TUSH 'Inclusive Rave' (Cu)", location: 'London', bold: false },
+    { date: '7 March 2025', iso: '2025-03-07', event: 'Mischief (Metropolis)', location: 'London', bold: false },
+    { date: '15 March 2025', iso: '2025-03-15', event: 'TG March Ball (Electrowerkz - 1.5K cap)', location: 'London', bold: true },
+    { date: '8 April 2025', iso: '2025-04-08', event: 'Lollapalooza', location: 'Osaka, Japan', bold: false },
+    { date: '10 April 2025', iso: '2025-04-10', event: 'FT & Blueflower (Club Circus)', location: 'Tokyo, Japan', bold: true },
+    { date: '18 April 2025', iso: '2025-04-18', event: 'Mischief (Metropolis)', location: 'London', bold: false },
+    { date: '20 April 2025', iso: '2025-04-20', event: "Resurge 'No Drama' (the DBA)", location: 'Manchester', bold: false },
+    { date: '26 April 2025', iso: '2025-04-26', event: 'Cyberdog (DJ residency)', location: 'London', bold: false },
+    { date: '17-25 May 2025', iso: '2025-05-25', event: "Ibiza.PlayAbout 'Annual Music Festival' (Ibiza Jet)", location: 'Ibiza', bold: true },
+    { date: '30 May 2025', iso: '2025-05-30', event: "TUSH 'Inclusive Rave' (Night Tales)", location: 'London', bold: false },
+    { date: '7 June 2025', iso: '2025-06-07', event: 'Secret Valley Festival', location: 'Wales', bold: true },
+    { date: '23 August 2025', iso: '2025-08-23', event: 'Cyberdog (DJ residency)', location: 'London', bold: false },
+    { date: '7 September 2025', iso: '2025-09-07', event: 'Cyberdog (DJ residency)', location: 'London', bold: false },
   ];
 
-  // Helper to parse dates for sorting (handles ranges and months)
-  function parseEventDate(dateStr) {
-    // Try to get the first date in the string
-    const match = dateStr.match(/(\d{1,2}) ([A-Za-z]+)(?: (\d{4}))?/);
-    if (!match) return new Date(0);
-    const day = parseInt(match[1], 10);
-    const month = match[2];
-    const year = match[3] ? parseInt(match[3], 10) : 2024;
-    const months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
-    const monthIdx = months.findIndex(m => month.startsWith(m));
-    if (monthIdx === -1) return new Date(0);
-    return new Date(year, monthIdx, day);
-  }
+  // Sort newest (future) events first using the ISO date
+  const sortedEvents = [...allEvents].sort((a, b) => new Date(b.iso).getTime() - new Date(a.iso).getTime());
 
-  // Sort newest (future) events first
-  const sortedEvents = [...allEvents].sort((a, b) => parseEventDate(b.date) - parseEventDate(a.date));
+  // Show only the most recent 10 by default
+  const [showAll, setShowAll] = useState(false);
+  const visibleEvents = showAll ? sortedEvents : sortedEvents.slice(0, 10);
 
   // Refs for smooth scroll
   const bioRef = useRef(null)
   const eventsRef = useRef(null)
   const feedbackRef = useRef(null)
+  const galleryRef = useRef(null)
 
   const scrollToSection = (ref: React.RefObject<HTMLDivElement>) => {
     if (ref.current) {
       ref.current.scrollIntoView({ behavior: 'smooth', block: 'start' })
     }
+  }
+
+  // Gallery images with date and location fields
+  const galleryImages = [
+    { filename: 'chastingtigers-0115.jpg', date: '15 March 2025', location: 'TG, Electrowerkz' },
+    { filename: 'chastingtigers-8511.jpg', date: '15 March 2025', location: 'TG, Electrowerkz' },
+    { filename: 'DSC01427.jpg', date: '20 April 2025', location: 'The DBA, Manchester' },
+    { filename: 'DSC01286.jpg', date: '20 April 2025', location: 'The DBA, Manchester' },
+    { filename: 'DSC01346.jpg', date: '20 April 2025', location: 'The DBA, Manchester' },
+    { filename: 'DSC01443.jpg', date: '20 April 2025', location: 'The DBA, Manchester' },
+    { filename: 'DSC01288.jpg', date: '20 April 2025', location: 'The DBA, Manchester' },
+    { filename: 'Kassita - Zerdazi (TUSH at Night Tales) 30-05-25 - 00004.jpg', date: '30 May 2025', location: 'Night Tales' },
+    { filename: 'Kassita Leeds Festival 2024.jpeg.jpg', date: '24 August 2024', location: 'Leeds Festival' },
+  ];
+
+  // Helper to find event info for a gallery image (by filename)
+  function getEventInfoForImage(filename: string) {
+    // Try to find an event whose event name or location is in the filename (case-insensitive)
+    const lower = filename.toLowerCase();
+    return allEvents.find(e =>
+      lower.includes(e.location.toLowerCase()) ||
+      lower.includes(e.event.toLowerCase().split('(')[0].trim().toLowerCase())
+    );
   }
 
   return (
@@ -83,6 +99,7 @@ function App() {
       {/* Navigation Buttons */}
       <div className="flex justify-center mb-10 mt-60 md:mt-36">
         <button className="nav-btn nav-btn-pink text-kassita" onClick={() => scrollToSection(bioRef)}>Bio</button>
+        <button className="nav-btn nav-btn-pink text-kassita" onClick={() => scrollToSection(galleryRef)}>Gallery</button>
         <button className="nav-btn nav-btn-purple text-kassita" onClick={() => scrollToSection(eventsRef)}>Shows & Events</button>
         <button className="nav-btn nav-btn-teal text-kassita" onClick={() => scrollToSection(feedbackRef)}>Promoter Feedback</button>
       </div>
@@ -100,22 +117,67 @@ function App() {
           </p>
         </div>
 
+        {/* Gallery Section */}
+        <div ref={galleryRef} id="gallery" className="mb-12 block-gallery">
+          <h2 className="mb-6 text-2xl font-bold text-kassita header-bio">Gallery</h2>
+          <div className="h-80 sm:h-96 xl:h-[32rem] 2xl:h-[40rem] w-full max-w-3xl mx-auto">
+            <Carousel slideInterval={4000} pauseOnHover>
+              {galleryImages.map((img, idx) => (
+                <div key={idx} className="relative flex flex-col items-center justify-center w-full h-full">
+                  <img
+                    src={`/gallery/${img.filename}`}
+                    alt={img.filename.replace(/\.[^.]+$/, '').replace(/[-_]/g, ' ')}
+                    className="object-contain w-full h-full bg-black rounded-lg"
+                    loading="lazy"
+                  />
+                  {img.date && (
+                    <div className="absolute z-10 pointer-events-none bottom-4 left-4">
+                      <span className="text-xl font-bold text-primary drop-shadow-lg text-kassita">{img.date}</span>
+                    </div>
+                  )}
+                  {img.location && (
+                    <div className="absolute z-10 pointer-events-none bottom-4 right-4">
+                      <span className="text-xl font-bold text-secondary drop-shadow-lg text-kassita">{img.location}</span>
+                    </div>
+                  )}
+                </div>
+              ))}
+            </Carousel>
+          </div>
+        </div>
+
         {/* Shows & Events Section */}
         <div ref={eventsRef} id="events" className="block-events">
-          <h2 className="mb-8 text-2xl font-bold text-kassita header-events">Shows & Events Timeline</h2>
+          <h2 className="mb-8 text-2xl font-bold text-kassita header-events">Shows & Events</h2>
           <div className="timeline-container">
-            {sortedEvents.map((event, index) => (
+            {visibleEvents.map((event, index) => (
               <div key={index} className="timeline-event">
                 <div className="timeline-dot" />
                 <div className="timeline-content">
-                  <span className="timeline-date font-semibold">{event.date}</span>
-                  <span className={event.bold ? "timeline-title font-bold" : "timeline-title"}>{event.event}</span>
+                  <span className="font-semibold timeline-date">{event.date}</span>
+                  <span className={event.bold ? "timeline-title font-bold" : "timeline-title"}>{
+                    event.event
+                      .replace(/Subtle Radio/g, '<a href="https://subtleradio.com/" class="link-bio link-underline" target="_blank" rel="noopener noreferrer">Subtle Radio</a>')
+                      .replace(/Mode Radio/g, '<a href="https://mode.london/" class="link-bio link-underline" target="_blank" rel="noopener noreferrer">Mode Radio</a>')
+                  }</span>
                   <span className="timeline-location">{event.location}</span>
                 </div>
               </div>
             ))}
           </div>
-          <p className="pt-5">as well as numerous private parties, radio show residencies at Subtle Radio and Mode Radio, and other events.</p>
+          {sortedEvents.length > 10 && (
+            <div className="flex justify-center mt-4">
+              <button
+                className="px-6 py-2 rounded-full bg-[#a36bb3] text-black font-bold text-kassita border-2 border-[#a36bb3] hover:bg-black hover:text-[#a36bb3] transition-colors duration-200"
+                onClick={() => setShowAll(v => !v)}
+              >
+                {showAll ? 'Show Less' : 'Show More'}
+              </button>
+            </div>
+          )}
+          <p className="pt-5">
+            as well as numerous private parties, radio show residencies at <a href="https://subtleradio.com/" className="link-bio link-underline" target="_blank" rel="noopener noreferrer">Subtle Radio</a> and <a href="https://mode.london/" className="link-bio link-underline" target="_blank" rel="noopener noreferrer">Mode Radio</a>, and other events.
+          </p>
         </div>
 
         {/* Promoter Feedback Section */}

@@ -2,32 +2,32 @@
 @tailwind components;
 @tailwind utilities;
 
+@font-face {
+  font-family: 'Good Timing';
+  src: url('/good_timing.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+
 :root {
   background-color: black;
   color: #dae7e0;
-  --neon-pink: #ff71ce;
-  --neon-purple: #b026ff;
+  --main-pink: #fa5da2;
+  --main-purple: #a36bb3;
+  --main-teal: #7ceffa;
 }
 
 @layer components {
   .text-primary {
-    @apply text-[#695d46];
+    @apply text-[#fa5da2];
   }
 
   .text-secondary {
-    @apply text-[#008575];
+    @apply text-[#7ceffa];
   }
 
   .text-accent {
-    @apply text-[#ff5e0e];
-  }
-
-  .link {
-    @apply text-secondary hover:text-accent transition-colors duration-200;
-  }
-
-  .link-underline {
-    @apply link hover:underline;
+    @apply text-[#a36bb3];
   }
 
   .text-body {
@@ -36,6 +36,194 @@
 
   .text-heading {
     @apply font-['Montserrat'];
+  }
+
+  .text-kassita {
+    @apply font-['Good_Timing'];
+  }
+
+  /* Section-specific header and link colors */
+  .header-bio {
+    @apply text-[#fa5da2];
+  }
+  .header-events {
+    @apply text-[#a36bb3];
+  }
+  .header-feedback {
+    @apply text-[#7ceffa];
+  }
+  .link-bio {
+    @apply text-[#fa5da2] hover:text-[#a36bb3] transition-colors duration-200;
+  }
+  .link-events {
+    @apply text-[#a36bb3] hover:text-[#7ceffa] transition-colors duration-200;
+  }
+  .link-feedback {
+    @apply text-[#7ceffa] hover:text-[#fa5da2] transition-colors duration-200;
+  }
+
+  .link-underline {
+    @apply underline hover:no-underline;
+  }
+
+  .block-bio {
+    @apply bg-[#1a1a1a] rounded-2xl p-8 mb-12 shadow-lg border-2 border-[#fa5da2]/30;
+  }
+  .block-events {
+    @apply bg-[#23182b] rounded-2xl p-8 mb-12 shadow-lg border-2 border-[#a36bb3]/30;
+  }
+  .block-feedback {
+    @apply bg-[#14282b] rounded-2xl p-8 mb-12 shadow-lg border-2 border-[#7ceffa]/30;
+  }
+  .nav-btn {
+    @apply px-5 py-2 rounded-full font-bold text-lg transition-colors duration-200 mx-2 shadow-md border-2;
+  }
+  .nav-btn-pink {
+    @apply bg-[#fa5da2] text-black border-[#fa5da2] hover:bg-black hover:text-[#fa5da2];
+  }
+  .nav-btn-purple {
+    @apply bg-[#a36bb3] text-black border-[#a36bb3] hover:bg-black hover:text-[#a36bb3];
+  }
+  .nav-btn-teal {
+    @apply bg-[#7ceffa] text-black border-[#7ceffa] hover:bg-black hover:text-[#7ceffa];
+  }
+
+  /* Top bar for icons and logo */
+  .top-bar {
+    @apply w-full flex items-center justify-between px-6 py-2 fixed top-0 left-0 z-50 shadow-lg h-28;
+    background: #23182b;
+    backdrop-filter: blur(6px);
+  }
+  .top-bar-left {
+    @apply flex items-center h-full;
+  }
+  .top-bar-logo {
+    @apply h-full w-auto mr-4 rounded-full object-contain bg-black/40 border-2;
+    border-color: #23182b;
+    display: block;
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+  .top-bar-title {
+    @apply text-5xl font-bold text-kassita text-[#fa5da2] select-none flex items-center justify-center;
+    line-height: 1;
+    letter-spacing: 0.05em;
+  }
+  .top-bar-right {
+    @apply flex items-center ml-auto;
+  }
+  .top-bar-icon {
+    @apply text-2xl mx-2 transition-colors duration-200 hover:scale-110;
+  }
+
+  /* Responsive styles for mobile */
+  @media (max-width: 768px) {
+    .top-bar {
+      @apply flex-col h-auto px-2 py-2;
+      min-height: 8rem;
+    }
+    .top-bar-left {
+      @apply flex flex-col items-center justify-center w-full mb-2 h-auto;
+    }
+    .top-bar-logo {
+      @apply h-20 w-auto mr-0 mb-1;
+    }
+    .top-bar-title {
+      @apply text-5xl mt-0 mb-2;
+      letter-spacing: 0.05em;
+      justify-content: center;
+    }
+    .top-bar-right {
+      @apply w-full justify-center;
+    }
+    .top-bar-icon {
+      @apply text-xl mx-3 !important;
+    }
+  }
+
+  .timeline-container {
+    position: relative;
+    margin-left: 2rem;
+    padding-left: 2rem;
+    border-left: 3px solid #a36bb3;
+  }
+  .timeline-event {
+    position: relative;
+    margin-bottom: 1.2rem;
+    display: flex;
+    align-items: flex-start;
+  }
+  .timeline-dot {
+    position: absolute;
+    left: -2.5rem;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 0.85rem;
+    height: 0.85rem;
+    background: linear-gradient(135deg, #fa5da2 60%, #7ceffa 100%);
+    border-radius: 50%;
+    border: 3px solid #23182b;
+    box-shadow: 0 0 0 2.5px #23182b44;
+    z-index: 2;
+  }
+  /* Hide the line above the first dot and below the last dot with overlays */
+  .timeline-event:first-child::before{
+    content: '';
+    position: absolute;
+    left: -2.5rem;
+    top: 50%;
+    transform: translateY(-110%);
+    width: 0.85rem;
+    height: 3.5rem;
+    background: #23182b;
+    z-index: 4;
+    border-radius: 0%;
+  }
+  
+  .timeline-event:last-child::after {
+    content: '';
+    position: absolute;
+    left: -2.5rem;
+    top: 50%;
+    transform: translateY(8%);
+    width: 0.85rem;
+    height: 3.5rem;
+    background: #23182b;
+    z-index: 4;
+    border-radius: 0%;
+  }
+  .timeline-content {
+    background: #1a1a1a;
+    border-radius: 1rem;
+    padding: 0.65rem 1rem;
+    box-shadow: 0 2px 12px #0004;
+    border: 2px solid #a36bb3;
+    margin-left: 0.5rem;
+    min-width: 0;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 0.05rem;
+  }
+  .timeline-date {
+    color: #fa5da2;
+    font-family: 'Good Timing', 'Montserrat', sans-serif;
+    font-size: 1.1rem;
+    margin-bottom: 0.1rem;
+  }
+  .timeline-title {
+    color: #dae7e0;
+    font-size: 1.15rem;
+    font-family: 'Montserrat', 'Good Timing', sans-serif;
+    margin-bottom: 0.1rem;
+  }
+  .timeline-location {
+    color: #7ceffa;
+    font-size: 1rem;
+    font-family: 'Montserrat', 'Good Timing', sans-serif;
+    font-weight: 600;
+    margin-top: 0.1rem;
+    letter-spacing: 0.01em;
   }
 }
 

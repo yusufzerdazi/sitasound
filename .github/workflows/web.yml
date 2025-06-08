@@ -38,8 +38,8 @@ jobs:
       with:
         azcliversion: 2.52.0
         inlineScript: |
-          az storage blob delete-batch --account-name sitasound --source '$web'
-          az storage blob upload-batch --destination '$web' --account-name sitasound --source ./dist --overwrite
-          az cdn endpoint purge -g sitasound -n sitasound --profile-name sitasound --content-paths "/*"
+          az storage blob delete-batch --account-name sitasound --source '$web' --auth-mode login
+          az storage blob upload-batch --destination '$web' --account-name sitasound --source ./dist --overwrite --auth-mode login
+          az cdn endpoint purge -g sitasound -n sitasound --profile-name sitasound --content-paths "/*" --auth-mode login
 
   

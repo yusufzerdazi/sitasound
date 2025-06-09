@@ -134,12 +134,52 @@ function App() {
       </div>
 
       {/* Navigation Buttons */}
-      <div className="flex justify-center mb-10 mt-60 md:mt-36">
-        <button className="nav-btn nav-btn-pink text-kassita" onClick={() => scrollToSection(bioRef)}>Bio</button>
-        <button className="nav-btn nav-btn-pink text-kassita" onClick={() => scrollToSection(galleryRef)}>Gallery</button>
-        <button className="nav-btn nav-btn-purple text-kassita" onClick={() => scrollToSection(eventsRef)}>Shows & Events</button>
-        <button className="nav-btn nav-btn-teal text-kassita" onClick={() => scrollToSection(feedbackRef)}>Promoter Feedback</button>
-        <button className="nav-btn nav-btn-blue text-kassita" onClick={() => scrollToSection(mapRef)}>Scratch Map</button>
+      <div className="flex flex-wrap justify-center gap-3 mb-10 mt-60 md:mt-36">
+        <span
+          className="nav-btn nav-btn-pink text-kassita cursor-pointer select-none mb-2"
+          onClick={() => scrollToSection(bioRef)}
+          tabIndex={0}
+          role="button"
+          onKeyPress={e => { if (e.key === 'Enter' || e.key === ' ') scrollToSection(bioRef); }}
+        >
+          Bio
+        </span>
+        <span
+          className="nav-btn nav-btn-pink text-kassita cursor-pointer select-none mb-2"
+          onClick={() => scrollToSection(galleryRef)}
+          tabIndex={0}
+          role="button"
+          onKeyPress={e => { if (e.key === 'Enter' || e.key === ' ') scrollToSection(galleryRef); }}
+        >
+          Gallery
+        </span>
+        <span
+          className="nav-btn nav-btn-purple text-kassita cursor-pointer select-none mb-2"
+          onClick={() => scrollToSection(eventsRef)}
+          tabIndex={0}
+          role="button"
+          onKeyPress={e => { if (e.key === 'Enter' || e.key === ' ') scrollToSection(eventsRef); }}
+        >
+          Shows & Events
+        </span>
+        <span
+          className="nav-btn nav-btn-teal text-kassita cursor-pointer select-none mb-2"
+          onClick={() => scrollToSection(feedbackRef)}
+          tabIndex={0}
+          role="button"
+          onKeyPress={e => { if (e.key === 'Enter' || e.key === ' ') scrollToSection(feedbackRef); }}
+        >
+          Promoter Feedback
+        </span>
+        <span
+          className="nav-btn nav-btn-blue text-kassita cursor-pointer select-none mb-2"
+          onClick={() => scrollToSection(mapRef)}
+          tabIndex={0}
+          role="button"
+          onKeyPress={e => { if (e.key === 'Enter' || e.key === ' ') scrollToSection(mapRef); }}
+        >
+          Scratch Map
+        </span>
       </div>
 
       {/* Content */}

@@ -1,6 +1,50 @@
-import React, { useRef, useState } from 'react'
+import React, { useRef, useState, memo } from 'react'
 import { Carousel } from 'flowbite-react';
 import { ComposableMap, Geographies, Geography } from "react-simple-maps";
+
+// Move these outside the component to avoid recreation on every render
+const highlightedCountries = ["GBR", "ESP", "JPN"]; // United Kingdom, Spain, Japan
+const geoUrl = "world.json";
+
+// Move NeonScratchMap outside App to avoid unnecessary re-renders
+const NeonScratchMap = memo(function NeonScratchMap() {
+  return (
+    <div className="flex flex-col items-center block-scratch-map">
+      <div className="flex justify-center w-full max-w-3xl">
+        <ComposableMap
+          projectionConfig={{ scale: 140 }}
+          style={{ width: "100%", height: "auto", filter: "drop-shadow(0 0 0px #7ceffa)" }}
+        >
+          <Geographies geography={geoUrl}>
+            {({ geographies }) =>
+              geographies.map((geo) => {
+                const isHighlighted = highlightedCountries.includes(geo.id);
+                return (
+                  <Geography
+                    key={geo.rsmKey}
+                    geography={geo}
+                    fill={isHighlighted ? "#fa5da2" : "none"}
+                    stroke="#00fff7"
+                    strokeWidth={isHighlighted ? 1 : 0.4}
+                    style={{
+                      default: {
+                        filter: isHighlighted
+                          ? "drop-shadow(0 0 3px #00fff7)"
+                          : "drop-shadow(0 0 1.5px #00fff7)",
+                        transition: "all 0.3s",
+                        pointerEvents: "none",
+                      }
+                    }}
+                  />
+                );
+              })
+            }
+          </Geographies>
+        </ComposableMap>
+      </div>
+    </div>
+  );
+});
 
 function App() {
   // Combine all events into one array with a year for sorting
@@ -39,15 +83,24 @@ function App() {
   const visibleEvents = showAll ? sortedEvents : sortedEvents.slice(0, 10);
 
   // Refs for smooth scroll
+  const headerRef = useRef<HTMLDivElement>(null)
   const bioRef = useRef(null)
   const eventsRef = useRef(null)
   const feedbackRef = useRef(null)
   const galleryRef = useRef(null)
   const mapRef = useRef(null)
 
+  // Scroll to section with dynamic header offset
   const scrollToSection = (ref: React.RefObject<HTMLDivElement>) => {
     if (ref.current) {
-      ref.current.scrollIntoView({ behavior: 'smooth', block: 'start' })
+      const headerHeight = headerRef.current?.clientHeight || 0;
+      const extraSpacing = 24; // You can tweak this for extra space below header
+      const elementPosition = (ref.current as HTMLElement).getBoundingClientRect().top + window.pageYOffset;
+      const offsetPosition = elementPosition - headerHeight - extraSpacing;
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: 'smooth',
+      });
     }
   }
 
@@ -66,53 +119,18 @@ function App() {
     { filename: 'Kassita Leeds Festival 2024.jpeg.jpg', date: '24 August 2024', location: 'Leeds Festival' },
   ];
 
-  // England, Scotland, and Wales are all part of GBR in most world topojsons
-  const highlightedCountries = ["GBR", "ESP", "JPN"]; // United Kingdom, Spain, Japan
-  const geoUrl = "world.json";
+  // State for current carousel index
+  const [galleryIndex, setGalleryIndex] = useState(0);
 
-  function NeonScratchMap() {
-    return (
-      <div className="flex flex-col items-center block-scratch-map">
-        <div className="flex justify-center w-full max-w-3xl">
-          <ComposableMap
-            projectionConfig={{ scale: 140 }}
-            style={{ width: "100%", height: "auto", filter: "drop-shadow(0 0 0px #7ceffa)" }}
-          >
-            <Geographies geography={geoUrl}>
-              {({ geographies }) =>
-                geographies.map((geo) => {
-                  const isHighlighted = highlightedCountries.includes(geo.id);
-                  return (
-                    <Geography
-                      key={geo.rsmKey}
-                      geography={geo}
-                      fill={isHighlighted ? "#fa5da2" : "none"}
-                      stroke="#00fff7"
-                      strokeWidth={isHighlighted ? 1 : 0.4}
-                      style={{
-                        default: {
-                          filter: isHighlighted
-                            ? "drop-shadow(0 0 3px #00fff7)"
-                            : "drop-shadow(0 0 1.5px #00fff7)",
-                          transition: "all 0.3s",
-                          pointerEvents: "none",
-                        }
-                      }}
-                    />
-                  );
-                })
-              }
-            </Geographies>
-          </ComposableMap>
-        </div>
-      </div>
-    );
-  }
+  // Handler for carousel change (no fade effect)
+  const handleCarouselChange = (idx: number) => {
+    setGalleryIndex(idx);
+  };
 
   return (
     <div className="min-h-screen bg-black text-primary">
       {/* Top Bar with Logo, Title, and Social Icons */}
-      <div className="top-bar">
+      <div className="top-bar" ref={headerRef}>
         <div className="top-bar-left">
           <img src="header.gif" alt="Kassita Logo" className="top-bar-logo" />
           <span className="top-bar-title">KASSITA</span>
@@ -134,9 +152,9 @@ function App() {
       </div>
 
       {/* Navigation Buttons */}
-      <div className="flex flex-wrap justify-center gap-3 mb-10 mt-60 md:mt-36">
+      <div className="flex flex-wrap justify-center gap-3 mb-6 nav-margin-top">
         <span
-          className="nav-btn nav-btn-pink text-kassita cursor-pointer select-none mb-2"
+          className="px-5 py-2 mb-2 text-base cursor-pointer select-none nav-btn nav-btn-pink text-kassita"
           onClick={() => scrollToSection(bioRef)}
           tabIndex={0}
           role="button"
@@ -145,7 +163,7 @@ function App() {
           Bio
         </span>
         <span
-          className="nav-btn nav-btn-pink text-kassita cursor-pointer select-none mb-2"
+          className="px-5 py-2 mb-2 text-base cursor-pointer select-none nav-btn nav-btn-purple text-kassita"
           onClick={() => scrollToSection(galleryRef)}
           tabIndex={0}
           role="button"
@@ -154,7 +172,7 @@ function App() {
           Gallery
         </span>
         <span
-          className="nav-btn nav-btn-purple text-kassita cursor-pointer select-none mb-2"
+          className="px-5 py-2 mb-2 text-base cursor-pointer select-none nav-btn nav-btn-teal text-kassita"
           onClick={() => scrollToSection(eventsRef)}
           tabIndex={0}
           role="button"
@@ -163,7 +181,7 @@ function App() {
           Shows & Events
         </span>
         <span
-          className="nav-btn nav-btn-teal text-kassita cursor-pointer select-none mb-2"
+          className="px-5 py-2 mb-2 text-base cursor-pointer select-none nav-btn nav-btn-pink text-kassita"
           onClick={() => scrollToSection(feedbackRef)}
           tabIndex={0}
           role="button"
@@ -172,7 +190,7 @@ function App() {
           Promoter Feedback
         </span>
         <span
-          className="nav-btn nav-btn-blue text-kassita cursor-pointer select-none mb-2"
+          className="px-5 py-2 mb-2 text-base cursor-pointer select-none nav-btn nav-btn-purple text-kassita"
           onClick={() => scrollToSection(mapRef)}
           tabIndex={0}
           role="button"
@@ -191,41 +209,46 @@ function App() {
             From living in Manchester, Bristol and then London over the past 10 years, experiencing the nightlife in each city, Kassita absorbed a plethora of culture and sound that gives her mixes a unique edge that keeps you coming back for more. Her expert track selection takes you on a journey through house/tech house, techno, breaks and bass genres, seeking to explore the different perspectives of electronic music to introduce the audience to something new, while carefully tailoring her performances to the venue and crowd.
           </p>
           <p>
-            Kassita won a mix competition to <span className="font-semibold">DJ at Parklife Festival</span> and has since gone on to perform at two other UK festivals as well as perform at multiple events across the UK, including at iconic venue 'The Cause' in London. She has founded her own electronic music event called "TUSH" (@tush_space) which is an inclusive rave aimed at fostering a playful, respectful space that encourages mutual appreciation and open mindedness within the sanctuary of good music. Kassita also has <span className="font-semibold">radio residencies at <a href="https://subtleradio.com/" className="link-bio link-underline" target="_blank" rel="noopener noreferrer">Subtle</a></span> (Hackney) and <a href="https://mode.london/" className="font-semibold link-bio link-underline">Mode</a> (London).
+            Kassita won a mix competition to <span className="font-semibold"><a href="https://parklife.uk.com/" className="link-bio link-underline" target="_blank" rel="noopener noreferrer">DJ at Parklife Festival</a></span> and has since gone on to perform at two other UK festivals as well as perform at multiple events across the UK, including at iconic venue <a href="https://www.thecause.london/" className="link-bio link-underline" target="_blank" rel="noopener noreferrer">'The Cause'</a> in London. She has founded her own electronic music event called "TUSH" (<a href="https://www.instagram.com/tush_space/" className="link-bio link-underline" target="_blank" rel="noopener noreferrer">@tush_space</a>) which is an inclusive rave aimed at fostering a playful, respectful space that encourages mutual appreciation and open mindedness within the sanctuary of good music. Kassita also has <span className="font-semibold">radio residencies at <a href="https://subtleradio.com/" className="link-bio link-underline" target="_blank" rel="noopener noreferrer">Subtle</a></span> (Hackney) and <a href="https://mode.london/" className="font-semibold link-bio link-underline" target="_blank" rel="noopener noreferrer">Mode</a> (London).
           </p>
         </div>
 
         {/* Gallery Section */}
-        <div ref={galleryRef} id="gallery" className="mb-12 block-gallery">
+        <div ref={galleryRef} id="gallery" className="mb-12 block-gallery-purple">
           <h2 className="mb-6 text-2xl font-bold text-kassita header-bio">Gallery</h2>
-          <div className="h-80 sm:h-96 xl:h-[32rem] 2xl:h-[40rem] w-full max-w-3xl mx-auto">
-            <Carousel slideInterval={4000} pauseOnHover>
-              {galleryImages.map((img, idx) => (
-                <div key={idx} className="flex flex-col items-center justify-center w-full h-full">
-                  <img
-                    src={`/gallery/${img.filename}`}
-                    alt={img.filename.replace(/\.[^.]+$/, '').replace(/[-_]/g, ' ')}
-                    className="object-contain w-full max-h-[90%] bg-black rounded-lg"
-                    loading="lazy"
-                  />
-                  {(img.date || img.location) && (
-                    <div className="flex flex-row items-center justify-between w-full px-6 py-3 mt-2 bg-black rounded-lg bg-opacity-80">
-                      {img.date && (
-                        <span className="text-lg font-bold text-primary drop-shadow-lg text-kassita">{img.date}</span>
-                      )}
-                      {img.location && (
-                        <span className="text-lg font-bold text-secondary drop-shadow-lg text-kassita">{img.location}</span>
-                      )}
-                    </div>
-                  )}
-                </div>
-              ))}
-            </Carousel>
+          <div className="w-full max-w-3xl mx-auto">
+            <div className="h-80 sm:h-96 xl:h-[32rem] 2xl:h-[40rem]">
+              <Carousel
+                slideInterval={4000}
+                pauseOnHover
+                onSlideChange={handleCarouselChange}
+              >
+                {galleryImages.map((img, idx) => (
+                  <div key={idx} className="w-full h-full">
+                    <img
+                      src={`/gallery/${img.filename}`}
+                      alt={img.filename.replace(/\.[^.]+$/, '').replace(/[-_]/g, ' ')}
+                      className="object-contain w-full h-full bg-black rounded-lg"
+                      loading="lazy"
+                    />
+                  </div>
+                ))}
+              </Carousel>
+            </div>
+            {/* Date and Location below carousel */}
+            <div className="mt-6 text-center">
+              {galleryImages[galleryIndex].date && (
+                <div className="mb-1 text-lg font-bold text-primary drop-shadow-lg text-kassita">{galleryImages[galleryIndex].date}</div>
+              )}
+              {galleryImages[galleryIndex].location && (
+                <div className="text-lg font-bold text-secondary drop-shadow-lg text-kassita">{galleryImages[galleryIndex].location}</div>
+              )}
+            </div>
           </div>
         </div>
 
         {/* Shows & Events Section */}
-        <div ref={eventsRef} id="events" className="block-events">
+        <div ref={eventsRef} id="events" className="block-events-teal">
           <h2 className="mb-8 text-2xl font-bold text-kassita header-events">Shows & Events</h2>
           <div className="timeline-container">
             {visibleEvents.map((event, index) => (
@@ -233,11 +256,17 @@ function App() {
                 <div className="timeline-dot" />
                 <div className="timeline-content">
                   <span className="font-semibold timeline-date">{event.date}</span>
-                  <span className={event.bold ? "timeline-title font-bold" : "timeline-title"}>{
-                    event.event
-                      .replace(/Subtle Radio/g, '<a href="https://subtleradio.com/" class="link-bio link-underline" target="_blank" rel="noopener noreferrer">Subtle Radio</a>')
-                      .replace(/Mode Radio/g, '<a href="https://mode.london/" class="link-bio link-underline" target="_blank" rel="noopener noreferrer">Mode Radio</a>')
-                  }</span>
+                  <span
+                    className={event.bold ? "timeline-title font-bold" : "timeline-title"}
+                    dangerouslySetInnerHTML={{
+                      __html: event.event
+                        .replace(/@tush_space/g, '<a href="https://www.instagram.com/tush_space/" class="link-bio link-underline" target="_blank" rel="noopener noreferrer">@tush_space</a>')
+                        .replace(/Subtle Radio/g, '<a href="https://subtleradio.com/" class="link-bio link-underline" target="_blank" rel="noopener noreferrer">Subtle Radio</a>')
+                        .replace(/Mode Radio/g, '<a href="https://mode.london/" class="link-bio link-underline" target="_blank" rel="noopener noreferrer">Mode Radio</a>')
+                        .replace(/Parklife Festival/g, '<a href="https://parklife.uk.com/" class="link-bio link-underline" target="_blank" rel="noopener noreferrer">Parklife Festival</a>')
+                        .replace(/The Cause/g, '<a href="https://www.thecause.london/" class="link-bio link-underline" target="_blank" rel="noopener noreferrer">The Cause</a>')
+                    }}
+                  />
                   <span className="timeline-location">{event.location}</span>
                 </div>
               </div>
@@ -259,7 +288,7 @@ function App() {
         </div>
 
         {/* Promoter Feedback Section */}
-        <div ref={feedbackRef} id="feedback" className="block-feedback">
+        <div ref={feedbackRef} id="feedback" className="block-bio">
           <h2 className="mb-6 text-2xl font-bold text-kassita header-feedback">Promoter Feedback</h2>
           <div className="space-y-8">
             <div>
@@ -288,7 +317,7 @@ function App() {
         </div>
 
         {/* Neon Scratch Map Section */}
-        <div ref={mapRef} id="scratch-map" className="block-scratch-map">
+        <div ref={mapRef} id="scratch-map" className="oval-map-container">
           <NeonScratchMap />
         </div>
       </div>

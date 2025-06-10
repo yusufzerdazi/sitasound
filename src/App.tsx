@@ -49,10 +49,10 @@ const NeonScratchMap = memo(function NeonScratchMap() {
 function App() {
   // Combine all events into one array with a year for sorting
   const allEvents = [
-    { date: '8 June 2024', iso: '2024-06-08', event: 'Parklife Festival (VIP Stage)', location: 'Manchester', bold: true },
+    { date: '8 June 2024', iso: '2024-06-08', event: 'Parklife Festival (VIP Stage)', location: 'Manchester', bold: false },
     { date: '13 July 2024', iso: '2024-07-13', event: 'TRNSMT Festival (FourLoko Crate)', location: 'Glasgow', bold: false },
     { date: '24 August 2024', iso: '2024-08-24', event: 'Leeds Festival (FourLoko Crate)', location: 'Leeds', bold: false },
-    { date: '16 November 2024', iso: '2024-11-16', event: "Burning Man 'Decompression' (The Cause, 1k+ cap)", location: 'London', bold: true },
+    { date: '16 November 2024', iso: '2024-11-16', event: "Burning Man 'Decompression' (The Cause)", location: 'London', bold: false },
     { date: '25 May 2024', iso: '2024-05-25', event: "Spilt Milk 'Queer Feminist Art Afterparty' (VFD)", location: 'London', bold: false },
     { date: '1 November 2024', iso: '2024-11-01', event: "TUSH 'Inclusive Rave' (Jaguar Shoes)", location: 'London', bold: false },
     { date: '25 October 2024', iso: '2024-10-25', event: "Looney Grooves 'UKGirls: Hallowqueen' (XLR)", location: 'Manchester', bold: false },
@@ -62,15 +62,15 @@ function App() {
     { date: '19 February 2025', iso: '2025-02-19', event: 'BMC Radio Takeover', location: 'London', bold: false },
     { date: '21 February 2025', iso: '2025-02-21', event: "TUSH 'Inclusive Rave' (Cu)", location: 'London', bold: false },
     { date: '7 March 2025', iso: '2025-03-07', event: 'Mischief (Metropolis)', location: 'London', bold: false },
-    { date: '15 March 2025', iso: '2025-03-15', event: 'TG March Ball (Electrowerkz - 1.5K cap)', location: 'London', bold: true },
+    { date: '15 March 2025', iso: '2025-03-15', event: 'TG March Ball (Electrowerkz)', location: 'London', bold: false },
     { date: '8 April 2025', iso: '2025-04-08', event: 'Lollapalooza', location: 'Osaka, Japan', bold: false },
-    { date: '10 April 2025', iso: '2025-04-10', event: 'FT & Blueflower (Club Circus)', location: 'Tokyo, Japan', bold: true },
+    { date: '10 April 2025', iso: '2025-04-10', event: 'FT & Blueflower (Club Circus)', location: 'Tokyo, Japan', bold: false },
     { date: '18 April 2025', iso: '2025-04-18', event: 'Mischief (Metropolis)', location: 'London', bold: false },
-    { date: '20 April 2025', iso: '2025-04-20', event: "Resurge 'No Drama' (the DBA)", location: 'Manchester', bold: false },
+    { date: '20 April 2025', iso: '2025-04-20', event: "Resurge (The DBA)", location: 'Manchester', bold: false },
     { date: '26 April 2025', iso: '2025-04-26', event: 'Cyberdog (DJ residency)', location: 'London', bold: false },
-    { date: '17-25 May 2025', iso: '2025-05-25', event: "Ibiza.PlayAbout 'Annual Music Festival' (Ibiza Jet)", location: 'Ibiza', bold: true },
+    { date: '17-25 May 2025', iso: '2025-05-25', event: "Ibiza.PlayAbout 'Annual Music Festival' (Ibiza Jet)", location: 'Ibiza', bold: false },
     { date: '30 May 2025', iso: '2025-05-30', event: "TUSH 'Inclusive Rave' (Night Tales)", location: 'London', bold: false },
-    { date: '7 June 2025', iso: '2025-06-07', event: 'Secret Valley Festival', location: 'Wales', bold: true },
+    { date: '7 June 2025', iso: '2025-06-07', event: 'Secret Valley Festival', location: 'Wales', bold: false },
     { date: '23 August 2025', iso: '2025-08-23', event: 'Cyberdog (DJ residency)', location: 'London', bold: false },
     { date: '7 September 2025', iso: '2025-09-07', event: 'Cyberdog (DJ residency)', location: 'London', bold: false },
   ];
@@ -106,17 +106,16 @@ function App() {
 
   // Gallery images with date and location fields
   const galleryImages = [
-    { filename: 'chastingtigers-0115.jpg', date: '15 March 2025', location: 'Electrowerkz, London' },
-    { filename: 'chastingtigers-8511.jpg', date: '15 March 2025', location: 'Electrowerkz, London' },
-    { filename: 'DSC01427.jpg', date: '20 April 2025', location: 'The DBA, Manchester' },
-    { filename: 'DSC01286.jpg', date: '20 April 2025', location: 'The DBA, Manchester' },
-    { filename: 'DSC01346.jpg', date: '20 April 2025', location: 'The DBA, Manchester' },
-    { filename: 'DSC01443.jpg', date: '20 April 2025', location: 'The DBA, Manchester' },
-    { filename: 'DSC01288.jpg', date: '20 April 2025', location: 'The DBA, Manchester' },
-    { filename: 'Keepers club 22nd LR-14.JPG', date: '22nd March 2025', location: 'Keeper, Ibiza' },
-    { filename: 'Keepers club 22nd LR-16.JPG', date: '22nd March 2025', location: 'Keeper, Ibiza' },
-    { filename: 'Kassita - Zerdazi (TUSH at Night Tales) 30-05-25 - 00004.jpg', date: '30 May 2025', location: 'Night Tales, London' },
-    { filename: 'Kassita Leeds Festival 2024.jpeg.jpg', date: '24 August 2024', location: 'Leeds Festival' },
+    { filename: 'chastingtigers-0115.jpg', date: 'March 2025', location: 'Electrowerkz, London' },
+    { filename: 'chastingtigers-8511.jpg', date: 'March 2025', location: 'Electrowerkz, London' },
+    { filename: 'DSC01427.jpg', date: 'April 2025', location: 'The DBA, Manchester' },
+    { filename: 'DSC01286.jpg', date: 'April 2025', location: 'The DBA, Manchester' },
+    { filename: 'DSC01288.jpg', date: 'April 2025', location: 'The DBA, Manchester' },
+    { filename: 'DSC01346.jpg', date: 'April 2025', location: 'The DBA, Manchester' },
+    { filename: 'Keepers club 22nd LR-14.JPG', date: 'May 2025', location: 'Keeper, Ibiza' },
+    { filename: 'Keepers club 22nd LR-16.JPG', date: 'May 2025', location: 'Keeper, Ibiza' },
+    { filename: 'Kassita - Zerdazi (TUSH at Night Tales) 30-05-25 - 00004.jpg', date: 'May 2025', location: 'Night Tales, London' },
+    { filename: 'Kassita Leeds Festival 2024.jpeg.jpg', date: 'August 2024', location: 'Leeds Festival' },
   ];
 
   // State for current carousel index
@@ -209,7 +208,7 @@ function App() {
             From living in Manchester, Bristol and then London over the past 10 years, experiencing the nightlife in each city, Kassita absorbed a plethora of culture and sound that gives her mixes a unique edge that keeps you coming back for more. Her expert track selection takes you on a journey through house/tech house, techno, breaks and bass genres, seeking to explore the different perspectives of electronic music to introduce the audience to something new, while carefully tailoring her performances to the venue and crowd.
           </p>
           <p>
-            Kassita won a mix competition to <span className="font-semibold"><a href="https://parklife.uk.com/" className="link-bio link-underline" target="_blank" rel="noopener noreferrer">DJ at Parklife Festival</a></span> and has since gone on to perform at two other UK festivals as well as perform at multiple events across the UK, including at iconic venue <a href="https://www.thecause.london/" className="link-bio link-underline" target="_blank" rel="noopener noreferrer">'The Cause'</a> in London. She has founded her own electronic music event called "TUSH" (<a href="https://www.instagram.com/tush_space/" className="link-bio link-underline" target="_blank" rel="noopener noreferrer">@tush_space</a>) which is an inclusive rave aimed at fostering a playful, respectful space that encourages mutual appreciation and open mindedness within the sanctuary of good music. Kassita also has <span className="font-semibold">radio residencies at <a href="https://subtleradio.com/" className="link-bio link-underline" target="_blank" rel="noopener noreferrer">Subtle</a></span> (Hackney) and <a href="https://mode.london/" className="font-semibold link-bio link-underline" target="_blank" rel="noopener noreferrer">Mode</a> (London).
+            Kassita won a mix competition to <span className="font-semibold"><a href="https://parklife.uk.com/" className="link-bio link-underline" target="_blank" rel="noopener noreferrer">DJ at Parklife Festival</a></span> and has since gone on to perform at two other UK festivals as well as perform at multiple events across the UK, including at iconic venue <a href="https://www.thecause.london/" className="link-bio link-underline" target="_blank" rel="noopener noreferrer">'The Cause'</a> in London. She has founded her own electronic music event called "TUSH" (<a href="https://www.instagram.com/tush_space/" className="link-bio link-underline" target="_blank" rel="noopener noreferrer">@tush_space</a> / <a href="https://www.tushspace.com/" className="link-bio link-underline" target="_blank" rel="noopener noreferrer">tushspace.com</a>) which is an inclusive rave aimed at fostering a playful, respectful space that encourages mutual appreciation and open mindedness within the sanctuary of good music. Kassita also has <span className="font-semibold">radio Residencies at <a href="https://subtleradio.com/" className="link-bio link-underline" target="_blank" rel="noopener noreferrer">Subtle</a></span> (Hackney) and <a href="https://mode.london/" className="font-semibold link-bio link-underline" target="_blank" rel="noopener noreferrer">Mode</a> (London).
           </p>
         </div>
 
@@ -261,6 +260,23 @@ function App() {
                     dangerouslySetInnerHTML={{
                       __html: event.event
                         .replace(/@tush_space/g, '<a href="https://www.instagram.com/tush_space/" class="link-bio link-underline" target="_blank" rel="noopener noreferrer">@tush_space</a>')
+                        .replace(/TUSH(?![\w])/g, '<a href="https://www.tushspace.com/" class="link-bio link-underline" target="_blank" rel="noopener noreferrer">TUSH</a>')
+                        .replace(/Spilt Milk/g, '<a href="https://www.instagram.com/spiltmilkkkkkk/" class="link-bio link-underline" target="_blank" rel="noopener noreferrer">Spilt Milk</a>')
+                        .replace(/Looney Grooves/g, '<a href="https://www.instagram.com/looney.grooves/" class="link-bio link-underline" target="_blank" rel="noopener noreferrer">Looney Grooves</a>')
+                        .replace(/Faded Society/g, '<a href="https://www.instagram.com/thefadedcommunity" class="link-bio link-underline" target="_blank" rel="noopener noreferrer">Faded Society</a>')
+                        .replace(/Burning Man 'Decompression'/g, '<a href="https://londondecom.org/" class="link-bio link-underline" target="_blank" rel="noopener noreferrer">Burning Man \'Decompression\'</a>')
+                        .replace(/Secret Valley Festival/g, '<a href="https://www.secretvalleyfest.com/" class="link-bio link-underline" target="_blank" rel="noopener noreferrer">Secret Valley Festival</a>')
+                        .replace(/Ibiza.PlayAbout/g, '<a href="https://www.ibizaplayabout.com/" class="link-bio link-underline" target="_blank" rel="noopener noreferrer">Ibiza.PlayAbout</a>')
+                        .replace(/Cyberdog/g, '<a href="https://www.cyberdog.net/" class="link-bio link-underline" target="_blank" rel="noopener noreferrer">Cyberdog</a>')
+                        .replace(/Mischief/g, '<a href="https://www.instagram.com/mischief.london" class="link-bio link-underline" target="_blank" rel="noopener noreferrer">Mischief</a>')
+                        .replace(/Derby Brewery Arms|The DBA/gi, '<a href="https://www.instagram.com/derbybreweryarms/?hl=en" class="link-bio link-underline" target="_blank" rel="noopener noreferrer">The DBA</a>')
+                        .replace(/Lollapalooza/g, '<a href="https://www.instagram.com/lollapalooza.cafe/?hl=en" class="link-bio link-underline" target="_blank" rel="noopener noreferrer">Lollapalooza</a>')
+                        .replace(/Club Circus/g, '<a href="https://www.instagram.com/circus_tokyo/?hl=en" class="link-bio link-underline" target="_blank" rel="noopener noreferrer">Club Circus</a>')
+                        .replace(/Electrowerkz/g, '<a href="https://www.electrowerkz.co.uk/" class="link-bio link-underline" target="_blank" rel="noopener noreferrer">Electrowerkz</a>')
+                        .replace(/Leeds Festival/g, '<a href="https://www.leedsfestival.com/" class="link-bio link-underline" target="_blank" rel="noopener noreferrer">Leeds Festival</a>')
+                        .replace(/TRNSMT Festival/g, '<a href="https://trnsmtfest.com/" class="link-bio link-underline" target="_blank" rel="noopener noreferrer">TRNSMT Festival</a>')
+                        .replace(/BMC Radio/g, '<a href="https://www.instagram.com/bmc.radio/?hl=en" class="link-bio link-underline" target="_blank" rel="noopener noreferrer">BMC Radio</a>')
+                        .replace(/Cu/g, '<a href="https://www.instagram.com/cu_dalston/?hl=en" class="link-bio link-underline" target="_blank" rel="noopener noreferrer">Cu</a>')
                         .replace(/Subtle Radio/g, '<a href="https://subtleradio.com/" class="link-bio link-underline" target="_blank" rel="noopener noreferrer">Subtle Radio</a>')
                         .replace(/Mode Radio/g, '<a href="https://mode.london/" class="link-bio link-underline" target="_blank" rel="noopener noreferrer">Mode Radio</a>')
                         .replace(/Parklife Festival/g, '<a href="https://parklife.uk.com/" class="link-bio link-underline" target="_blank" rel="noopener noreferrer">Parklife Festival</a>')
@@ -283,7 +299,7 @@ function App() {
             </div>
           )}
           <p className="pt-5">
-            as well as numerous private parties, radio show residencies at <a href="https://subtleradio.com/" className="link-bio link-underline" target="_blank" rel="noopener noreferrer">Subtle Radio</a> and <a href="https://mode.london/" className="link-bio link-underline" target="_blank" rel="noopener noreferrer">Mode Radio</a>, and other events.
+            as well as numerous private parties, radio show Residencies at <a href="https://subtleradio.com/" className="link-bio link-underline" target="_blank" rel="noopener noreferrer">Subtle Radio</a> and <a href="https://mode.london/" className="link-bio link-underline" target="_blank" rel="noopener noreferrer">Mode Radio</a>, and other events.
           </p>
         </div>
 
@@ -321,6 +337,17 @@ function App() {
           <NeonScratchMap />
         </div>
       </div>
+      {/* Footer */}
+      <footer className="w-full flex justify-center items-center py-8 mt-8 border-t border-[#a36bb3]/30 bg-black/80">
+        <div className="flex items-center gap-4">
+          <a href="https://yusuf.zerdazi.com" target="_blank" rel="noopener noreferrer">
+            <img src="/yz.svg" alt="Yusuf Zerdazi Logo" className="w-8 h-8 drop-shadow-lg" style={{ minWidth: 32 }} />
+          </a>
+          <a href="https://yusuf.zerdazi.com" target="_blank" rel="noopener noreferrer" className="text-lg font-bold tracking-wide text-accent text-kassita hover:underline">
+            Website by Yusuf Zerdazi
+          </a>
+        </div>
+      </footer>
     </div>
   )
 }

@@ -53,7 +53,13 @@
     @apply text-[#7ceffa];
   }
   .link-bio {
-    @apply text-[#fa5da2] hover:text-[#a36bb3] transition-colors duration-200;
+    @apply font-bold;
+    color: inherit;
+    /* fallback for inherited color, but keep hover as before */
+    transition: color 0.2s;
+  }
+  .link-bio:hover {
+    color: #a36bb3;
   }
   .link-events {
     @apply text-[#a36bb3] hover:text-[#7ceffa] transition-colors duration-200;

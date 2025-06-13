@@ -337,17 +337,7 @@ function App() {
           <NeonScratchMap />
         </div>
       </div>
-      {/* Footer */}
-      <footer className="w-full flex justify-center items-center py-8 mt-8 border-t border-[#a36bb3]/30 bg-black/80">
-        <div className="flex items-center gap-4">
-          <a href="https://yusuf.zerdazi.com" target="_blank" rel="noopener noreferrer">
-            <img src="/yz.svg" alt="Yusuf Zerdazi Logo" className="w-8 h-8 drop-shadow-lg" style={{ minWidth: 32 }} />
-          </a>
-          <a href="https://yusuf.zerdazi.com" target="_blank" rel="noopener noreferrer" className="text-lg font-bold tracking-wide text-accent text-kassita hover:underline">
-            Website by Yusuf Zerdazi
-          </a>
-        </div>
-      </footer>
+      
     </div>
   )
 }

@@ -73,7 +73,9 @@ function App() {
     { date: '7 June 2025', iso: '2025-06-07', event: 'Secret Valley Festival', location: 'Wales', bold: false },
     { date: '23 August 2025', iso: '2025-08-23', event: 'Cyberdog (DJ residency)', location: 'London', bold: false },
     { date: '7 September 2025', iso: '2025-09-07', event: 'Cyberdog (DJ residency)', location: 'London', bold: false },
-  ];
+{ date: '27 June 2025', iso: '2025-06-27', event: 'Subtle (radio residency)', location: 'London', bold: false },
+ { date: '4 July 2025', iso: '2025-07-04', event: 'Mode London (radio residency)', location: 'London', bold: false }, 
+];
 
   // Sort newest (future) events first using the ISO date
   const sortedEvents = [...allEvents].sort((a, b) => new Date(b.iso).getTime() - new Date(a.iso).getTime());

@@ -3,7 +3,7 @@ import { Carousel } from 'flowbite-react';
 import { ComposableMap, Geographies, Geography } from "react-simple-maps";
 
 // Move these outside the component to avoid recreation on every render
-const highlightedCountries = ["GBR", "ESP", "JPN"]; // United Kingdom, Spain, Japan
+const highlightedCountries = ["GBR", "ESP", "JPN", "FRA"]; // United Kingdom, Spain, Japan
 const geoUrl = "world.json";
 
 // Move NeonScratchMap outside App to avoid unnecessary re-renders
@@ -76,6 +76,7 @@ function App() {
 { date: '27 June 2025', iso: '2025-06-27', event: 'Subtle (radio residency)', location: 'London', bold: false },
  { date: '4 July 2025', iso: '2025-07-04', event: 'Mode London (radio residency)', location: 'London', bold: false },
 { date: '27 July 2025', iso: '2025-07-27', event: 'Glastonbury Festival (Bar on the Green)', location: 'Glastonbury', bold: false },
+{ date: '5 July 2025', iso: '2025-07-05', event: 'TUSH Takeover (COCO)', location: 'Lille, France', bold: false },
 ];
 
   // Sort newest (future) events first using the ISO date

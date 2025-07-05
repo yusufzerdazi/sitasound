@@ -75,7 +75,7 @@ function App() {
     { date: '7 September 2025', iso: '2025-09-07', event: 'Cyberdog (DJ residency)', location: 'London', bold: false },
 { date: '27 June 2025', iso: '2025-06-27', event: 'Subtle (radio residency)', location: 'London', bold: false },
  { date: '4 July 2025', iso: '2025-07-04', event: 'Mode London (radio residency)', location: 'London', bold: false },
-{ date: '27 July 2025', iso: '2025-07-27', event: 'Glastonbury Festival (Bar on the Green)', location: 'Glastonbury', bold: false },
+{ date: '27 June 2025', iso: '2025-06-27', event: 'Glastonbury Festival (Bar on the Green)', location: 'Glastonbury', bold: false },
 { date: '5 July 2025', iso: '2025-07-05', event: 'TUSH Takeover (COCO)', location: 'Lille, France', bold: false },
 ];
 

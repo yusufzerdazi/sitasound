@@ -77,6 +77,7 @@ function App() {
  { date: '4 July 2025', iso: '2025-07-04', event: 'Mode London (radio residency)', location: 'London', bold: false },
 { date: '27 June 2025', iso: '2025-06-27', event: 'Glastonbury Festival (Bar on the Green)', location: 'Glastonbury', bold: false },
 { date: '5 July 2025', iso: '2025-07-05', event: 'TUSH Takeover (COCO)', location: 'Lille, France', bold: false },
+{ date: '11 July 2025', iso: '2025-07-11', event: 'House Rules (NQ Bloc Party)', location: 'Manchester', bold: false },
 ];
 
   // Sort newest (future) events first using the ISO date

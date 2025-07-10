@@ -209,12 +209,17 @@ function App() {
         {/* Bio Section */}
         <div ref={bioRef} id="bio" className="block-bio">
           <h2 className="mb-4 text-2xl font-bold text-kassita header-bio">Bio</h2>
-          <p className="mb-4">
-            From living in Manchester, Bristol and then London over the past 10 years, experiencing the nightlife in each city, Kassita absorbed a plethora of culture and sound that gives her mixes a unique edge that keeps you coming back for more. Her expert track selection takes you on a journey through house/tech house, techno, breaks and bass genres, seeking to explore the different perspectives of electronic music to introduce the audience to something new, while carefully tailoring her performances to the venue and crowd.
-          </p>
           <p>
-            Kassita won a mix competition to <span className="font-semibold"><a href="https://parklife.uk.com/" className="link-bio link-underline" target="_blank" rel="noopener noreferrer">DJ at Parklife Festival</a></span> and has since gone on to perform at two other UK festivals as well as perform at multiple events across the UK, including at iconic venue <a href="https://www.thecause.london/" className="link-bio link-underline" target="_blank" rel="noopener noreferrer">'The Cause'</a> in London. She has founded her own electronic music event called "TUSH" (<a href="https://www.instagram.com/tush_space/" className="link-bio link-underline" target="_blank" rel="noopener noreferrer">@tush_space</a> / <a href="https://www.tushspace.com/" className="link-bio link-underline" target="_blank" rel="noopener noreferrer">tushspace.com</a>) which is an inclusive rave aimed at fostering a playful, respectful space that encourages mutual appreciation and open mindedness within the sanctuary of good music. Kassita also has <span className="font-semibold">radio Residencies at <a href="https://subtleradio.com/" className="link-bio link-underline" target="_blank" rel="noopener noreferrer">Subtle</a></span> (Hackney) and <a href="https://mode.london/" className="font-semibold link-bio link-underline" target="_blank" rel="noopener noreferrer">Mode</a> (London).
-          </p>
+  Kassita is an international DJ &amp; producer who seamlessly blends a diverse range of electronic genres in her mixes, which are always infused with upbeat energy to get you stomping.
+  <br /><br />
+  From living in Manchester, Bristol and London over the past 10 years, experiencing the nightlife in each city, Kassita absorbed a plethora of culture and sound that gives her mixes a unique edge that keeps you coming back for more.
+  <br /><br />
+  Not only has she played at multiple iconic venues across the UK, including The Cause, Electrowerkz (London) and the DBA (Manchester), just 6 months into her DJ career Kassita won a mix competition to perform at Parklife Festival 2024 (Manchester), and then went on to DJ at TRNSMT festival (Glasgow) and Leeds Festival with FourLoko later that same Summer.
+  <br /><br />
+  2025 has already been an unbelievable year for Kassita - she played at Glastonbury (Bar on the Green) and has ignited her international career by delivering fiery sets in Japan, France and Ibiza.
+  <br /><br />
+  On top of this, Kassita has founded her own electronic music event called “TUSH” (<a href="https://www.instagram.com/tush_space" className="link-bio link-underline" target="_blank" rel="noopener noreferrer">@tush_space</a>) which is an inclusive rave aimed at fostering a playful, respectful space that encourages mutual appreciation and open mindedness within the sanctuary of good music. Kassita also holds down radio residencies at Subtle Radio, Mode Radio and BMC radio, each based in London. You can find her mixing house, techno, breaks, UKG and bass genres… whatever it is, she’ll create a vibe that keeps you locked in.
+</p>
         </div>
 
         {/* Gallery Section */}

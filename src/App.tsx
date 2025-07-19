@@ -73,8 +73,9 @@ function App() {
     { date: '7 June 2025', iso: '2025-06-07', event: 'Secret Valley Festival', location: 'Wales', bold: false },
     { date: '23 August 2025', iso: '2025-08-23', event: 'Cyberdog (DJ residency)', location: 'London', bold: false },
     { date: '7 September 2025', iso: '2025-09-07', event: 'Cyberdog (DJ residency)', location: 'London', bold: false },
-{ date: '27 June 2025', iso: '2025-06-27', event: 'Subtle (radio residency)', location: 'London', bold: false },
- { date: '4 July 2025', iso: '2025-07-04', event: 'Mode London (radio residency)', location: 'London', bold: false },
+    { date: '1 August 2025', iso: '2025-08-01', event: 'Mak & Pasteman EP Launch Party', location: 'Mode Radio', bold: false },
+    { date: '3 October 2025', iso: '2025-10-03', event: "TUSH 'Inclusive Rave' with Jess Hands (Cu)", location: 'London', bold: false },
+    { date: '4 October 2025', iso: '2025-10-04', event: 'TBA', location: 'TBA', bold: false },
 { date: '27 June 2025', iso: '2025-06-27', event: 'Glastonbury Festival (Bar on the Green)', location: 'Glastonbury', bold: false },
 { date: '5 July 2025', iso: '2025-07-05', event: 'TUSH Takeover (COCO)', location: 'Lille, France', bold: false },
 { date: '11 July 2025', iso: '2025-07-11', event: 'House Rules (NQ Bloc Party)', location: 'Manchester', bold: false },
@@ -313,6 +314,11 @@ function App() {
           </p>
         </div>
 
+        {/* Neon Scratch Map Section */}
+        <div ref={mapRef} id="scratch-map" className="oval-map-container">
+          <NeonScratchMap />
+        </div>
+
         {/* Promoter Feedback Section */}
         <div ref={feedbackRef} id="feedback" className="block-bio">
           <h2 className="mb-6 text-2xl font-bold text-kassita header-feedback">Promoter Feedback</h2>
@@ -339,12 +345,14 @@ function App() {
               </p>
               <p className="font-semibold text-right">Josh M., Event Manager</p>
             </div>
+            <div>
+              <h3 className="mb-2 text-xl font-semibold text-secondary text-kassita header-feedback">Secret Valley Festival</h3>
+              <p className="italic">
+                "Kassita was incredibly easy to work with, always super prompt and communicative, a killer DJ, totally delivered."
+              </p>
+              <p className="font-semibold text-right">Coren, Festival Organiser</p>
+            </div>
           </div>
-        </div>
-
-        {/* Neon Scratch Map Section */}
-        <div ref={mapRef} id="scratch-map" className="oval-map-container">
-          <NeonScratchMap />
         </div>
       </div>
       

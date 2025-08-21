@@ -39,6 +39,5 @@ jobs:
         inlineScript: |
           az storage blob delete-batch --account-name sitasound --source '$web'
           az storage blob upload-batch --destination '$web' --account-name sitasound --source ./dist --overwrite
-          az cdn endpoint purge -g sitasound -n sitasound --profile-name sitasound --content-paths "/*"
 
   

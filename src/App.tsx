@@ -326,7 +326,7 @@ function App() {
         </div>
 
         {/* Neon Scratch Map Section */}
-        <div ref={mapRef} id="scratch-map" className="oval-map-container">
+        <div ref={mapRef} id="scratch-map" className="oval-map-container mb-12">
           <NeonScratchMap />
         </div>
 

@@ -69,17 +69,26 @@ function App() {
     { date: '20 April 2025', iso: '2025-04-20', event: "Resurge (The DBA)", location: 'Manchester', bold: false },
     { date: '26 April 2025', iso: '2025-04-26', event: 'Cyberdog (DJ residency)', location: 'London', bold: false },
     { date: '17-25 May 2025', iso: '2025-05-25', event: "Ibiza.PlayAbout 'Annual Music Festival' (Ibiza Jet)", location: 'Ibiza', bold: false },
-    { date: '30 May 2025', iso: '2025-05-30', event: "TUSH 'Inclusive Rave' (Night Tales)", location: 'London', bold: false },
+    { date: '30 May 2025', iso: '2025-05-30', event: "TUSH: House, Disco & Garage Night with <a href='https://www.instagram.com/reimonduk/' class='link-bio link-underline' target='_blank' rel='noopener noreferrer'>Reimond</a> (Night Tales)", location: 'London', bold: false },
     { date: '7 June 2025', iso: '2025-06-07', event: 'Secret Valley Festival', location: 'Wales', bold: false },
+    { date: '16 July 2025', iso: '2025-07-16', event: 'BMC Radio Takeover (Faded Community)', location: 'London', bold: false },
+    { date: '17 July 2025', iso: '2025-07-17', event: 'Not Bad For A Girl (Colour Factory)', location: 'London', bold: false },
+    { date: '19 July 2025', iso: '2025-07-19', event: 'TUSH: Open Decks & DJ Mixer (Club Makossa)', location: 'London', bold: false },
+    { date: '24 July 2025', iso: '2025-07-24', event: 'TOWIE (TV Set)', location: 'Essex', bold: false },
+    { date: '27 June 2025', iso: '2025-06-27', event: 'Glastonbury Festival (Bar on the Green)', location: 'Glastonbury', bold: false },
+    { date: '5 July 2025', iso: '2025-07-05', event: 'TUSH Takeover (COCO)', location: 'Lille, France', bold: false },
+    { date: '11 July 2025', iso: '2025-07-11', event: 'House Rules (NQ Bloc Party)', location: 'Manchester', bold: false },
+    { date: '1 August 2025', iso: '2025-08-01', event: 'Midas Label Launch with <a href="https://soundcloud.com/makandpasteman" class="link-bio link-underline" target="_blank" rel="noopener noreferrer">Mak & Pasteman</a> (<a href="https://www.instagram.com/midas.sound" class="link-bio link-underline" target="_blank" rel="noopener noreferrer">Midas</a>)', location: 'Mode Radio', bold: false },
+    { date: '8 August 2025', iso: '2025-08-08', event: 'Fuss Promotions: Garage Night', location: 'Surrey', bold: false },
+    { date: '20 August 2025', iso: '2025-08-20', event: 'BMC Radio Takeover (Faded Community)', location: 'London', bold: false },
     { date: '23 August 2025', iso: '2025-08-23', event: 'Cyberdog (DJ residency)', location: 'London', bold: false },
+    { date: '30 August 2025', iso: '2025-08-30', event: 'Don\'t Tell The Neighbours (Oslo Hackney)', location: 'London', bold: false },
+    { date: '5 September 2025', iso: '2025-09-05', event: 'TUSH: House, Disco & Garage Night with Very Special Guest (Night Tales)', location: 'London', bold: false },
     { date: '7 September 2025', iso: '2025-09-07', event: 'Cyberdog (DJ residency)', location: 'London', bold: false },
-    { date: '1 August 2025', iso: '2025-08-01', event: 'Mak & Pasteman EP Launch Party', location: 'Mode Radio', bold: false },
+    { date: '17 September 2025', iso: '2025-09-17', event: 'BMC Radio Takeover (Faded Community)', location: 'London', bold: false },
     { date: '3 October 2025', iso: '2025-10-03', event: "TUSH 'Inclusive Rave' with Jess Hands (Cu)", location: 'London', bold: false },
-    { date: '4 October 2025', iso: '2025-10-04', event: 'TBA', location: 'TBA', bold: false },
-{ date: '27 June 2025', iso: '2025-06-27', event: 'Glastonbury Festival (Bar on the Green)', location: 'Glastonbury', bold: false },
-{ date: '5 July 2025', iso: '2025-07-05', event: 'TUSH Takeover (COCO)', location: 'Lille, France', bold: false },
-{ date: '11 July 2025', iso: '2025-07-11', event: 'House Rules (NQ Bloc Party)', location: 'Manchester', bold: false },
-];
+    { date: '4 October 2025', iso: '2025-10-04', event: 'TUSH: Bass, Breaks & Techno Night with <a href="https://www.instagram.com/jess__hands/" class="link-bio link-underline" target="_blank" rel="noopener noreferrer">Jess Hands</a>', location: 'TBA', bold: false },
+  ];
 
   // Sort newest (future) events first using the ISO date
   const sortedEvents = [...allEvents].sort((a, b) => new Date(b.iso).getTime() - new Date(a.iso).getTime());
@@ -292,6 +301,9 @@ function App() {
                         .replace(/Mode Radio/g, '<a href="https://mode.london/" class="link-bio link-underline" target="_blank" rel="noopener noreferrer">Mode Radio</a>')
                         .replace(/Parklife Festival/g, '<a href="https://parklife.uk.com/" class="link-bio link-underline" target="_blank" rel="noopener noreferrer">Parklife Festival</a>')
                         .replace(/The Cause/g, '<a href="https://www.thecause.london/" class="link-bio link-underline" target="_blank" rel="noopener noreferrer">The Cause</a>')
+                        .replace(/Not Bad For A Girl/g, '<a href="https://www.instagram.com/notbadforagirluk/" class="link-bio link-underline" target="_blank" rel="noopener noreferrer">Not Bad For A Girl</a>')
+                        .replace(/TOWIE/g, '<a href="https://www.instagram.com/towie/" class="link-bio link-underline" target="_blank" rel="noopener noreferrer">TOWIE</a>')
+                        .replace(/Fuss Promotions/g, '<a href="https://www.instagram.com/fuss_promotions/" class="link-bio link-underline" target="_blank" rel="noopener noreferrer">Fuss Promotions</a>')
                     }}
                   />
                   <span className="timeline-location">{event.location}</span>

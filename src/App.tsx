@@ -87,6 +87,8 @@ function App() {
     { date: '7 September 2025', iso: '2025-09-07', event: 'Cyberdog (DJ residency)', location: 'London', bold: false },
     { date: '17 September 2025', iso: '2025-09-17', event: 'BMC Radio Takeover (Faded Community)', location: 'London', bold: false },
     { date: '3 October 2025', iso: '2025-10-04', event: 'TUSH: Bass, Breaks & Techno Night with <a href="https://www.instagram.com/jess__hands/" class="link-bio link-underline" target="_blank" rel="noopener noreferrer">Jess Hands</a> (Cu )', location: 'London', bold: false },
+    { date: '4 October 2025', iso: '2025-10-04', event: 'Midas Launch Party with <a href="https://soundcloud.com/makandpasteman" class="link-bio link-underline" target="_blank" rel="noopener noreferrer">Mak & Pasteman</a> (<a href="https://www.instagram.com/waves.ldn">Waves</a>)', location: 'London', bold: false },
+
   ];
 
   // Sort newest (future) events first using the ISO date

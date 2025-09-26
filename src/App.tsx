@@ -89,8 +89,9 @@ function App() {
     { date: '18 September 2025', iso: '2025-09-18', event: 'Delirium (Brooklyn)', location: 'New York', bold: false },
     { date: '7 September 2025', iso: '2025-09-07', event: 'Cyberdog (DJ residency)', location: 'London', bold: false },
     { date: '17 September 2025', iso: '2025-09-17', event: 'BMC Radio Takeover (Faded Community)', location: 'London', bold: false },
-    { date: '4 October 2025', iso: '2025-10-04', event: 'TUSH: Bass, Breaks & Techno Night with <a href="https://www.instagram.com/jess__hands/" class="link-bio link-underline" target="_blank" rel="noopener noreferrer">Jess Hands</a> (Cu )', location: 'London', bold: false },
+    { date: '4 October 2025', iso: '2025-10-04', event: 'TUSH: Bass, Breaks & Techno Night (Cu)', location: 'London', bold: false },
     { date: '3 October 2025', iso: '2025-10-03', event: 'Midas Launch Party with <a href="https://soundcloud.com/makandpasteman" class="link-bio link-underline" target="_blank" rel="noopener noreferrer">Mak & Pasteman</a> (<a href="https://www.instagram.com/waves.ldn">Waves</a>)', location: 'London', bold: false },
+    { date: '23 October 2025', iso: '2025-10-23', event: 'Surg Radio Takeover', location: 'Sydney, Australia', bold: false },
 
   ];
 
@@ -230,9 +231,9 @@ function App() {
   <br /><br />
   Not only has she played at multiple iconic venues across the UK, including The Cause, Electrowerkz (London) and the DBA (Manchester), just 6 months into her DJ career Kassita won a mix competition to perform at Parklife Festival 2024 (Manchester), and then went on to DJ at TRNSMT festival (Glasgow) and Leeds Festival with FourLoko later that same Summer.
   <br /><br />
-  2025 has already been an unbelievable year for Kassita - she played at Glastonbury (Bar on the Green) and has ignited her international career by delivering fiery sets in Japan, France and Ibiza.
+  2025 has already been an unbelievable year for Kassita - she played at Glastonbury (Bar on the Green) and has ignited her international career by delivering fiery sets in Japan, France, Australia, New York and Ibiza.
   <br /><br />
-  On top of this, Kassita has founded her own electronic music event called “TUSH” (<a href="https://www.instagram.com/tush_space" className="link-bio link-underline" target="_blank" rel="noopener noreferrer">@tush_space</a>) which is an inclusive rave aimed at fostering a playful, respectful space that encourages mutual appreciation and open mindedness within the sanctuary of good music. Kassita also holds down radio residencies at Subtle Radio, Mode Radio and BMC radio, each based in London. You can find her mixing house, techno, breaks, UKG and bass genres… whatever it is, she’ll create a vibe that keeps you locked in.
+  On top of this, Kassita has founded her own electronic music event called “TUSH” (<a href="https://www.instagram.com/tush_tribe" className="link-bio link-underline" target="_blank" rel="noopener noreferrer">@tush_tribe</a>) which is an inclusive rave aimed at fostering a playful, respectful space that encourages mutual appreciation and open mindedness within the sanctuary of good music. Kassita also holds down radio residencies at Subtle Radio, Mode Radio and BMC radio, each based in London. You can find her mixing house, techno, breaks, UKG and bass genres… whatever it is, she’ll create a vibe that keeps you locked in.
 </p>
         </div>
 
@@ -283,7 +284,7 @@ function App() {
                     className={event.bold ? "timeline-title font-bold" : "timeline-title"}
                     dangerouslySetInnerHTML={{
                       __html: event.event
-                        .replace(/@tush_space/g, '<a href="https://www.instagram.com/tush_space/" class="link-bio link-underline" target="_blank" rel="noopener noreferrer">@tush_space</a>')
+                        .replace(/@tush_space/g, '<a href="https://www.instagram.com/tush_tribe/" class="link-bio link-underline" target="_blank" rel="noopener noreferrer">@tush_tribe</a>')
                         .replace(/TUSH(?![\w])/g, '<a href="https://www.tushspace.com/" class="link-bio link-underline" target="_blank" rel="noopener noreferrer">TUSH</a>')
                         .replace(/Spilt Milk/g, '<a href="https://www.instagram.com/spiltmilkkkkkk/" class="link-bio link-underline" target="_blank" rel="noopener noreferrer">Spilt Milk</a>')
                         .replace(/Looney Grooves/g, '<a href="https://www.instagram.com/looney.grooves/" class="link-bio link-underline" target="_blank" rel="noopener noreferrer">Looney Grooves</a>')

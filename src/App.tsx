@@ -47,57 +47,71 @@ const NeonScratchMap = memo(function NeonScratchMap() {
 });
 
 function App() {
-  // Combine all events into one array with a year for sorting
+  // Helper function to format ISO date to readable format (e.g., "8 June 2024")
+  const formatDate = (isoDate: string | null | undefined): string => {
+    if (!isoDate) return 'TBC';
+    const date = new Date(isoDate);
+    if (isNaN(date.getTime())) return 'TBC';
+    const months = ['January', 'February', 'March', 'April', 'May', 'June', 
+                    'July', 'August', 'September', 'October', 'November', 'December'];
+    return `${date.getDate()} ${months[date.getMonth()]} ${date.getFullYear()}`;
+  };
+
+  // Combine all events into one array
   const allEvents = [
-    { date: '8 June 2024', iso: '2024-06-08', event: 'Parklife Festival (VIP Stage)', location: 'Manchester', bold: false },
-    { date: '13 July 2024', iso: '2024-07-13', event: 'TRNSMT Festival (FourLoko Crate)', location: 'Glasgow', bold: false },
-    { date: '24 August 2024', iso: '2024-08-24', event: 'Leeds Festival (FourLoko Crate)', location: 'Leeds', bold: false },
-    { date: '16 November 2024', iso: '2024-11-16', event: "Burning Man 'Decompression' (The Cause)", location: 'London', bold: false },
-    { date: '25 May 2024', iso: '2024-05-25', event: "Spilt Milk 'Queer Feminist Art Afterparty' (VFD)", location: 'London', bold: false },
-    { date: '1 November 2024', iso: '2024-11-01', event: "TUSH 'Inclusive Rave' (Jaguar Shoes)", location: 'London', bold: false },
-    { date: '25 October 2024', iso: '2024-10-25', event: "Looney Grooves 'UKGirls: Hallowqueen' (XLR)", location: 'Manchester', bold: false },
-    { date: '18 January 2025', iso: '2025-01-18', event: "Faded Society 'The Reset' (Club Makossa)", location: 'London', bold: false },
-    { date: '22 January 2025', iso: '2025-01-22', event: 'Mode Radio Takeover', location: 'London', bold: false },
-    { date: 'January - March 2025', iso: '2025-03-28', event: "Gordon Ramsay's Lucky Cat", location: 'Manchester & Mayfair', bold: false },
-    { date: '19 February 2025', iso: '2025-02-19', event: 'BMC Radio Takeover', location: 'London', bold: false },
-    { date: '21 February 2025', iso: '2025-02-21', event: "TUSH 'Inclusive Rave' (Cu)", location: 'London', bold: false },
-    { date: '7 March 2025', iso: '2025-03-07', event: 'Mischief (Metropolis)', location: 'London', bold: false },
-    { date: '15 March 2025', iso: '2025-03-15', event: 'TG March Ball (Electrowerkz)', location: 'London', bold: false },
-    { date: '8 April 2025', iso: '2025-04-08', event: 'Lollapalooza', location: 'Osaka, Japan', bold: false },
-    { date: '10 April 2025', iso: '2025-04-10', event: 'FT & Blueflower (Club Circus)', location: 'Tokyo, Japan', bold: false },
-    { date: '18 April 2025', iso: '2025-04-18', event: 'Mischief (Metropolis)', location: 'London', bold: false },
-    { date: '20 April 2025', iso: '2025-04-20', event: "Resurge (The DBA)", location: 'Manchester', bold: false },
-    { date: '26 April 2025', iso: '2025-04-26', event: 'Cyberdog (DJ residency)', location: 'London', bold: false },
-    { date: '17-25 May 2025', iso: '2025-05-25', event: "Ibiza.PlayAbout 'Annual Music Festival' (Ibiza Jet)", location: 'Ibiza', bold: false },
-    { date: '30 May 2025', iso: '2025-05-30', event: "TUSH: House, Disco & Garage Night with <a href='https://www.instagram.com/reimonduk/' class='link-bio link-underline' target='_blank' rel='noopener noreferrer'>Reimond</a> (Night Tales)", location: 'London', bold: false },
-    { date: '7 June 2025', iso: '2025-06-07', event: 'Secret Valley Festival', location: 'Wales', bold: false },
-    { date: '16 July 2025', iso: '2025-07-16', event: 'BMC Radio Takeover (Faded Community)', location: 'London', bold: false },
-    { date: '17 July 2025', iso: '2025-07-17', event: 'Not Bad For A Girl (Colour Factory)', location: 'London', bold: false },
-    { date: '19 July 2025', iso: '2025-07-19', event: 'TUSH: Open Decks & DJ Mixer (Club Makossa)', location: 'London', bold: false },
-    { date: '24 July 2025', iso: '2025-07-24', event: 'TOWIE (TV Set)', location: 'Essex', bold: false },
-    { date: '27 June 2025', iso: '2025-06-27', event: 'Glastonbury Festival (Bar on the Green)', location: 'Glastonbury', bold: false },
-    { date: '5 July 2025', iso: '2025-07-05', event: 'TUSH Takeover (COCO)', location: 'Lille, France', bold: false },
-    { date: '11 July 2025', iso: '2025-07-11', event: 'House Rules (NQ Bloc Party)', location: 'Manchester', bold: false },
-    { date: '1 August 2025', iso: '2025-08-01', event: 'Midas Label Launch with <a href="https://soundcloud.com/makandpasteman" class="link-bio link-underline" target="_blank" rel="noopener noreferrer">Mak & Pasteman</a> (<a href="https://www.instagram.com/midas.sound" class="link-bio link-underline" target="_blank" rel="noopener noreferrer">Midas</a>)', location: 'Mode Radio', bold: false },
-    { date: '8 August 2025', iso: '2025-08-08', event: 'Fuss Promotions: Garage Night', location: 'Surrey', bold: false },
-    { date: '20 August 2025', iso: '2025-08-20', event: 'BMC Radio Takeover (Faded Community)', location: 'London', bold: false },
-    { date: '23 August 2025', iso: '2025-08-23', event: 'Cyberdog (DJ residency)', location: 'London', bold: false },
-    { date: '30 August 2025', iso: '2025-08-30', event: 'Don\'t Tell The Neighbours (Oslo Hackney)', location: 'London', bold: false },
-    { date: '5 September 2025', iso: '2025-09-05', event: 'TUSH: House, Disco & Garage Night with Very Special Guest (Night Tales)', location: 'London', bold: false },
-    { date: '12 September 2025', iso: '2025-09-12', event: 'New York Fasion Week (Hudson Yards)', location: 'New York', bold: false },
-    { date: '14 September 2025', iso: '2025-09-14', event: 'Timeless Nexus (No Nazar)', location: 'New York', bold: false },
-    { date: '18 September 2025', iso: '2025-09-18', event: 'Delirium (Brooklyn)', location: 'New York', bold: false },
-    { date: '7 September 2025', iso: '2025-09-07', event: 'Cyberdog (DJ residency)', location: 'London', bold: false },
-    { date: '17 September 2025', iso: '2025-09-17', event: 'BMC Radio Takeover (Faded Community)', location: 'London', bold: false },
-    { date: '4 October 2025', iso: '2025-10-04', event: 'TUSH: Bass, Breaks & Techno Night (Cu)', location: 'London', bold: false },
-    { date: '3 October 2025', iso: '2025-10-03', event: 'Midas Launch Party with <a href="https://soundcloud.com/makandpasteman" class="link-bio link-underline" target="_blank" rel="noopener noreferrer">Mak & Pasteman</a> (<a href="https://www.instagram.com/waves.ldn">Waves</a>)', location: 'London', bold: false },
-    { date: '28 November 2025', iso: '2025-11-28', event: 'Mischief (Little Nan\'s Bar)', location: 'London', bold: false },
-    { date: 'TBC', event: 'Surg Radio Takeover (postponed)', location: 'Sydney, Australia', bold: false },
-    { date: '11 December 2025', iso: '2025-12-11', event: 'Cyberdog Radio Takeover', location: 'London', bold: false }
+    { iso: '2024-06-08', event: 'Parklife Festival (VIP Stage)', location: 'Manchester', bold: false },
+    { iso: '2024-07-13', event: 'TRNSMT Festival (FourLoko Crate)', location: 'Glasgow', bold: false },
+    { iso: '2024-08-24', event: 'Leeds Festival (FourLoko Crate)', location: 'Leeds', bold: false },
+    { iso: '2024-11-16', event: "Burning Man 'Decompression' (The Cause)", location: 'London', bold: false },
+    { iso: '2024-05-25', event: "Spilt Milk 'Queer Feminist Art Afterparty' (VFD)", location: 'London', bold: false },
+    { iso: '2024-11-01', event: "TUSH 'Inclusive Rave' (Jaguar Shoes)", location: 'London', bold: false },
+    { iso: '2024-10-25', event: "Looney Grooves 'UKGirls: Hallowqueen' (XLR)", location: 'Manchester', bold: false },
+    { iso: '2025-01-18', event: "Faded Society 'The Reset' (Club Makossa)", location: 'London', bold: false },
+    { iso: '2025-01-22', event: 'Mode Radio Takeover', location: 'London', bold: false },
+    { iso: '2025-03-28', dateDisplay: 'January - March 2025', event: "Gordon Ramsay's Lucky Cat", location: 'Manchester & Mayfair', bold: false },
+    { iso: '2025-02-19', event: 'BMC Radio Takeover', location: 'London', bold: false },
+    { iso: '2025-02-21', event: "TUSH 'Inclusive Rave' (Cu)", location: 'London', bold: false },
+    { iso: '2025-03-07', event: 'Mischief (Metropolis)', location: 'London', bold: false },
+    { iso: '2025-03-15', event: 'TG March Ball (Electrowerkz)', location: 'London', bold: false },
+    { iso: '2025-04-08', event: 'Lollapalooza', location: 'Osaka, Japan', bold: false },
+    { iso: '2025-04-10', event: 'FT & Blueflower (Club Circus)', location: 'Tokyo, Japan', bold: false },
+    { iso: '2025-04-18', event: 'Mischief (Metropolis)', location: 'London', bold: false },
+    { iso: '2025-04-20', event: "Resurge (The DBA)", location: 'Manchester', bold: false },
+    { iso: '2025-04-26', event: 'Cyberdog (DJ residency)', location: 'London', bold: false },
+    { iso: '2025-05-25', dateDisplay: '17-25 May 2025', event: "Ibiza.PlayAbout 'Annual Music Festival' (Ibiza Jet)", location: 'Ibiza', bold: false },
+    { iso: '2025-05-30', event: "TUSH: House, Disco & Garage Night with <a href='https://www.instagram.com/reimonduk/' class='link-bio link-underline' target='_blank' rel='noopener noreferrer'>Reimond</a> (Night Tales)", location: 'London', bold: false },
+    { iso: '2025-06-07', event: 'Secret Valley Festival', location: 'Wales', bold: false },
+    { iso: '2025-07-16', event: 'BMC Radio Takeover (Faded Community)', location: 'London', bold: false },
+    { iso: '2025-07-17', event: 'Not Bad For A Girl (Colour Factory)', location: 'London', bold: false },
+    { iso: '2025-07-19', event: 'TUSH: Open Decks & DJ Mixer (Club Makossa)', location: 'London', bold: false },
+    { iso: '2025-07-24', event: 'TOWIE (TV Set)', location: 'Essex', bold: false },
+    { iso: '2025-06-27', event: 'Glastonbury Festival (Bar on the Green)', location: 'Glastonbury', bold: false },
+    { iso: '2025-07-05', event: 'TUSH Takeover (COCO)', location: 'Lille, France', bold: false },
+    { iso: '2025-07-11', event: 'House Rules (NQ Bloc Party)', location: 'Manchester', bold: false },
+    { iso: '2025-08-01', event: 'Midas Label Launch with <a href="https://soundcloud.com/makandpasteman" class="link-bio link-underline" target="_blank" rel="noopener noreferrer">Mak & Pasteman</a> (<a href="https://www.instagram.com/midas.sound" class="link-bio link-underline" target="_blank" rel="noopener noreferrer">Midas</a>)', location: 'Mode Radio', bold: false },
+    { iso: '2025-08-08', event: 'Fuss Promotions: Garage Night', location: 'Surrey', bold: false },
+    { iso: '2025-08-20', event: 'BMC Radio Takeover (Faded Community)', location: 'London', bold: false },
+    { iso: '2025-08-23', event: 'Cyberdog (DJ residency)', location: 'London', bold: false },
+    { iso: '2025-08-30', event: 'Don\'t Tell The Neighbours (Oslo Hackney)', location: 'London', bold: false },
+    { iso: '2025-09-05', event: 'TUSH: House, Disco & Garage Night with Very Special Guest (Night Tales)', location: 'London', bold: false },
+    { iso: '2025-09-12', event: 'New York Fasion Week (Hudson Yards)', location: 'New York', bold: false },
+    { iso: '2025-09-14', event: 'Timeless Nexus (No Nazar)', location: 'New York', bold: false },
+    { iso: '2025-09-18', event: 'Delirium (Brooklyn)', location: 'New York', bold: false },
+    { iso: '2025-09-07', event: 'Cyberdog (DJ residency)', location: 'London', bold: false },
+    { iso: '2025-09-17', event: 'BMC Radio Takeover (Faded Community)', location: 'London', bold: false },
+    { iso: '2025-10-04', event: 'TUSH: Bass, Breaks & Techno Night (Cu)', location: 'London', bold: false },
+    { iso: '2025-10-03', event: 'Midas Launch Party with <a href="https://soundcloud.com/makandpasteman" class="link-bio link-underline" target="_blank" rel="noopener noreferrer">Mak & Pasteman</a> (<a href="https://www.instagram.com/waves.ldn">Waves</a>)', location: 'London', bold: false },
+    { iso: '2025-11-28', event: 'Mischief (Little Nan\'s Bar)', location: 'London', bold: false },
+    { iso: null, dateDisplay: 'TBC', event: 'Surg Radio Takeover (postponed)', location: 'Sydney, Australia', bold: false },
+    { iso: '2025-12-11', event: 'Cyberdog Radio Takeover', location: 'London', bold: false }
   ];
 
   // Sort newest (future) events first using the ISO date
-  const sortedEvents = [...allEvents].sort((a, b) => new Date(b.iso).getTime() - new Date(a.iso).getTime());
+  const sortedEvents = [...allEvents].sort((a, b) => {
+    if (!a.iso) return 1; // Put null dates at the end
+    if (!b.iso) return -1;
+    return new Date(b.iso).getTime() - new Date(a.iso).getTime();
+  });
 
   // Show only the most recent 10 by default
   const [showAll, setShowAll] = useState(false);
@@ -280,7 +294,7 @@ function App() {
               <div key={index} className="timeline-event">
                 <div className="timeline-dot" />
                 <div className="timeline-content">
-                  <span className="font-semibold timeline-date">{event.date}</span>
+                  <span className="font-semibold timeline-date">{event.dateDisplay || formatDate(event.iso)}</span>
                   <span
                     className={event.bold ? "timeline-title font-bold" : "timeline-title"}
                     dangerouslySetInnerHTML={{

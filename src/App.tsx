@@ -74,7 +74,7 @@ function App() {
     { iso: '2025-03-07', event: 'Mischief (Metropolis)', location: 'London', bold: false },
     { iso: '2025-03-15', event: 'TG March Ball (Electrowerkz)', location: 'London', bold: false },
     { iso: '2025-04-08', event: 'Lollapalooza', location: 'Osaka, Japan', bold: false },
-    { iso: '2025-04-10', event: 'FT & Blueflower (Club Circus)', location: 'Tokyo, Japan', bold: false },
+    { iso: '2025-04-10', event: 'FT & Blueflower EP Launch (Club Circus)', location: 'Tokyo, Japan', bold: false },
     { iso: '2025-04-18', event: 'Mischief (Metropolis)', location: 'London', bold: false },
     { iso: '2025-04-20', event: "Resurge (The DBA)", location: 'Manchester', bold: false },
     { iso: '2025-04-26', event: 'Cyberdog (DJ residency)', location: 'London', bold: false },
@@ -88,28 +88,29 @@ function App() {
     { iso: '2025-06-27', event: 'Glastonbury Festival (Bar on the Green)', location: 'Glastonbury', bold: false },
     { iso: '2025-07-05', event: 'TUSH Takeover (COCO)', location: 'Lille, France', bold: false },
     { iso: '2025-07-11', event: 'House Rules (NQ Bloc Party)', location: 'Manchester', bold: false },
-    { iso: '2025-08-01', event: 'Midas Label Launch with <a href="https://soundcloud.com/makandpasteman" class="link-bio link-underline" target="_blank" rel="noopener noreferrer">Mak & Pasteman</a> (<a href="https://www.instagram.com/midas.sound" class="link-bio link-underline" target="_blank" rel="noopener noreferrer">Midas</a>)', location: 'Mode Radio', bold: false },
+    { iso: '2025-08-01', event: 'Midas Label Launch with Mak & Pasteman (<a href="https://www.instagram.com/midas.sound" class="link-bio link-underline" target="_blank" rel="noopener noreferrer">Midas</a>)', location: 'Mode Radio', bold: false },
     { iso: '2025-08-08', event: 'Fuss Promotions: Garage Night', location: 'Surrey', bold: false },
     { iso: '2025-08-20', event: 'BMC Radio Takeover (Faded Community)', location: 'London', bold: false },
     { iso: '2025-08-23', event: 'Cyberdog (DJ residency)', location: 'London', bold: false },
     { iso: '2025-08-30', event: 'Don\'t Tell The Neighbours (Oslo Hackney)', location: 'London', bold: false },
-    { iso: '2025-09-05', event: 'TUSH: House, Disco & Garage Night with Very Special Guest (Night Tales)', location: 'London', bold: false },
-    { iso: '2025-09-12', event: 'New York Fasion Week (Hudson Yards)', location: 'New York', bold: false },
+    { iso: '2025-09-05', event: 'TUSH: House, Disco & Garage Night with Mak & Pasteman (Night Tales)', location: 'London', bold: false },
+    { iso: '2025-09-12', event: 'New York Fashion Week (Hudson Yards)', location: 'New York', bold: false },
     { iso: '2025-09-14', event: 'Timeless Nexus (No Nazar)', location: 'New York', bold: false },
     { iso: '2025-09-18', event: 'Delirium (Brooklyn)', location: 'New York', bold: false },
     { iso: '2025-09-07', event: 'Cyberdog (DJ residency)', location: 'London', bold: false },
-    { iso: '2025-09-17', event: 'BMC Radio Takeover (Faded Community)', location: 'London', bold: false },
     { iso: '2025-10-04', event: 'TUSH: Bass, Breaks & Techno Night (Cu)', location: 'London', bold: false },
-    { iso: '2025-10-03', event: 'Midas Launch Party with <a href="https://soundcloud.com/makandpasteman" class="link-bio link-underline" target="_blank" rel="noopener noreferrer">Mak & Pasteman</a> (<a href="https://www.instagram.com/waves.ldn">Waves</a>)', location: 'London', bold: false },
+    { iso: '2025-10-03', event: 'Midas Launch Party with Mak & Pasteman (<a href="https://www.instagram.com/waves.ldn" class="link-bio link-underline" target="_blank" rel="noopener noreferrer">Waves</a>)', location: 'London', bold: false },
     { iso: '2025-11-28', event: 'Mischief (Little Nan\'s Bar)', location: 'London', bold: false },
     { iso: null, dateDisplay: 'TBC', event: 'Surg Radio Takeover (postponed)', location: 'Sydney, Australia', bold: false },
     { iso: '2025-12-11', event: 'Cyberdog Radio Takeover', location: 'London', bold: false }
   ];
 
   // Sort newest (future) events first using the ISO date
+  // TBC events (null iso) go to the end chronologically
   const sortedEvents = [...allEvents].sort((a, b) => {
+    if (!a.iso && !b.iso) return 0; // Both are TBC, keep order
     if (!a.iso) return 1; // Put null dates at the end
-    if (!b.iso) return -1;
+    if (!b.iso) return -1; // Put null dates at the end
     return new Date(b.iso).getTime() - new Date(a.iso).getTime();
   });
 
@@ -320,7 +321,10 @@ function App() {
                         .replace(/Subtle Radio/g, '<a href="https://subtleradio.com/" class="link-bio link-underline" target="_blank" rel="noopener noreferrer">Subtle Radio</a>')
                         .replace(/Mode Radio/g, '<a href="https://mode.london/" class="link-bio link-underline" target="_blank" rel="noopener noreferrer">Mode Radio</a>')
                         .replace(/Parklife Festival/g, '<a href="https://parklife.uk.com/" class="link-bio link-underline" target="_blank" rel="noopener noreferrer">Parklife Festival</a>')
-                        .replace(/The Cause/g, '<a href="https://www.thecause.london/" class="link-bio link-underline" target="_blank" rel="noopener noreferrer">The Cause</a>')
+                        .replace(/Glastonbury Festival/g, '<a href="https://www.glastonburyfestivals.co.uk/" class="link-bio link-underline" target="_blank" rel="noopener noreferrer">Glastonbury Festival</a>')
+                        .replace(/Oslo Hackney/g, '<a href="https://www.oslohackney.com/" class="link-bio link-underline" target="_blank" rel="noopener noreferrer">Oslo Hackney</a>')
+                        .replace(/Mak & Pasteman/g, '<a href="https://www.instagram.com/makandpasteman" class="link-bio link-underline" target="_blank" rel="noopener noreferrer">Mak & Pasteman</a>')
+                        .replace(/The Cause/g, '<a href="https://supportthecause.co.uk/" class="link-bio link-underline" target="_blank" rel="noopener noreferrer">The Cause</a>')
                         .replace(/Not Bad For A Girl/g, '<a href="https://www.instagram.com/notbadforagirluk/" class="link-bio link-underline" target="_blank" rel="noopener noreferrer">Not Bad For A Girl</a>')
                         .replace(/TOWIE/g, '<a href="https://www.instagram.com/towie/" class="link-bio link-underline" target="_blank" rel="noopener noreferrer">TOWIE</a>')
                         .replace(/Fuss Promotions/g, '<a href="https://www.instagram.com/fuss_promotions/" class="link-bio link-underline" target="_blank" rel="noopener noreferrer">Fuss Promotions</a>')
